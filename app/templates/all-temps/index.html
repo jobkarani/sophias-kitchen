@@ -3,10 +3,28 @@
 <div class="container">
   <h1>Welcome to Cakes by Sophia</h1>
   <div class="card">
-    <img
-      src="https://cdn.pixabay.com/photo/2016/10/27/08/48/chef-1773672__340.png"
-      alt=""
-    />
+  </div>
+</div>
+<div class="card">
+  <h3>Birthday Cakes</h3>
+  <hr>
+  <div class="row">
+    {% for product in products %}
+    {% if product.product_id == 'Fr' %}
+    <div class="col-lg-4" style="margin-top: 2rem;">
+      <img class="thumbnail" src="{{ product.image.url }}" alt="">
+      <div class="box-element product">
+        <h6><strong>{{ product.name }}</strong></h6>
+        <hr>
+        <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">
+          Add to Cart
+        </button>
+        <!-- <a class="btn btn-outline-success" href="#">View</a> -->
+        <h4 style="display: inline-block; ">&#x9f3; {{ product.price|floatformat:2 }}</h4>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

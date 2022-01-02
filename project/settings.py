@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -85,6 +88,11 @@ DATABASES = {
     }
 }
 
+cloudinary.config(
+    cloud_name="dwrxuibpi",
+    api_key="226928141486514",
+    api_secret="bakCtUGpYbgoF9HFd3rmpUd6EHI"
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

@@ -1,0 +1,72 @@
+{% extends 'all-temps/base.html' %}
+{% load static %}
+
+{% block content %}
+<br><br><br>
+<div class="row">
+    <div class="col-lg-4">
+        <h3 style="text-align: center;">Indoor Plants</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/indoor_plants.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'plants' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+    <br>
+
+    <div class="col-lg-4">
+        <h3 style="text-align: center;">Fruit Plants</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/fruit_plants.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'fruits' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <h3 style="text-align: center;">Medicinal Plants</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/medicinal_plants.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'medicine' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4" style="margin-top: 3rem;">
+        <h3 style="text-align: center;">Flower Plants</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/flower_plants.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'flowers' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4" style="margin-top: 3rem;">
+        <h3 style="text-align: center;">Seeds</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/seeds.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'seeds' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4" style="margin-top: 3rem;">
+        <h3 style="text-align: center;">Cuttings</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/cuttings.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'cuttings' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+
+    <div class="col-lg-4" style="margin-top: 3rem;">
+        <h3 style="text-align: center;">Vegetable Plants</h3>
+        <hr>
+        <img class="thumbnail" src="{% static 'images/vegetable_plants.jpg' %}" alt="">
+        <div class="box-element product">
+            <a class="btn btn-success" href="{% url 'vegetables' %}">SHOP<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+</div>
+<br><br><br>
+{% endblock content %}
