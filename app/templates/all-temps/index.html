@@ -2,10 +2,7 @@
 <br /><br /><br /> <br>
 
 <style>
-  .row {
-    background-color: brown;
-    width: 30%;
-  }
+
 </style>
 
 <div class="container">
@@ -18,17 +15,33 @@
 
   <div class="row">
     {% for product in products %}
-    <div class="col-md-4" style="margin-top: 2%;">
-      <h6><strong>{{ product.name }}</strong></h6>
-      <img class="card-img-top responsive" alt="Personal" src="{{ product.image.url }}" alt="">
-      <div class="box-element product">
-        <p>{{ product.description}}</p>
+    <div class="col-md-12 col-md-6 col-lg-4" style="gap: 15px;">
+      <div class="card mb-4" style=" background: linear-gradient(to bottom right, #e19ce4, #99f048); ">
 
-        <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">
-          Add to Cart
-        </button>
-        <!-- <a class="btn btn-outline-success" href="#">View</a> -->
-        <h4 style="display: inline-block; ">Ksh.{{ product.price|floatformat:2 }}</h4>
+        <div class="card-body ">
+
+          <div>
+            <p class="fade-item mb-2"> {{ product.name|upper }}</p>
+          </div>
+          <div>
+            <a href="{% url 'product' product.id %}">
+              <img src="{{ product.image.url }}" class="card-img-top responsive" alt="Personal">
+            </a>
+          </div>
+          <div>
+            <p>Ingredients: {{ product.description}}</p>
+          </div>
+          <div>
+            <button data-product="{{ product.id }}" data-action="add"
+              class="btn btn-outline-secondary add-btn update-cart">
+              Add to Cart
+            </button>
+          </div>
+          <div>
+            <h4 style="display: inline-block; ">Ksh.{{ product.price|floatformat:2 }}</h4>
+          </div>
+
+        </div>
       </div>
     </div>
     {% endfor %}
