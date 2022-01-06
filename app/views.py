@@ -1,7 +1,8 @@
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from .email import send_welcome_email
 from django.http import JsonResponse
 import json
 from .forms import *
@@ -64,7 +65,21 @@ def profile(request):
     profile = Profile.objects.filter(user_id=current_user.id).first()
     product = Product.objects.filter(user_id=current_user.id).all()
 
-    return render(request, "all-temps/profile.html", {"profile": profile, "product": product})
+    if request.method == 'POST':
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['user']
+            email = form.cleaned_data['email']
+            recipient = NewsLetterRecipients(name=name, email=email)
+            recipient.save()
+            send_welcome_email(name, email)
+
+            HttpResponseRedirect('profile')
+    else:
+        form = ProfileForm()
+
+    return render(request, "all-temps/profile.html", {"profile": profile, "product": product, "letterForm": form})
+
 
 @login_required(login_url="/accounts/login/")
 def update_profile(request, id):
@@ -81,7 +96,6 @@ def update_profile(request, id):
 
     ctx = {"form": form}
     return render(request, 'all-temps/update_prof.html', ctx)
-
 
 
 # def store(request):

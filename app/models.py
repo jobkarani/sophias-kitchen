@@ -25,6 +25,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()
 
 
 class Customer(models.Model):
