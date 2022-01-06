@@ -7,17 +7,23 @@ from tinymce.models import HTMLField
 # Create your models here.
 
 
-class User(models.Model):
-    name = models.CharField(max_length=100)
-    profile_pic = CloudinaryField('image')
-    email = models.EmailField(max_length=100)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    profile_photo = CloudinaryField('image')
     phone_number = models.CharField(max_length=100)
-    date_created = models.DateTimeField(auto_now_add=True)
+    date_joined = models.DateTimeField(auto_now_add=True)
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.save()
+
+    def update(self):
+        self.save()
 
     def __str__(self):
-        return self.name
+        return self.user.username
 
 
 class Customer(models.Model):
@@ -26,12 +32,20 @@ class Customer(models.Model):
     name = models.CharField(max_length=256, null=True)
     email = models.EmailField(max_length=256, null=True)
 
+    def save_customer(self):
+        self.save()
+
+    def delete_customer(self):
+        self.save()
+
+    def update(self):
+        self.save()
+
     def __str__(self):
         return str(self.name)
 
 
 class Product(models.Model):
-    # category = models.ManyToManyField(Category, related_name='products')
     name = models.CharField(max_length=200)
     image = CloudinaryField('image')
     description = models.TextField()
@@ -43,6 +57,15 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)
 
+    def save_product(self):
+        self.save()
+
+    def delete_product(self):
+        self.save()
+
+    def update(self):
+        self.save()
+
     def __str__(self):
         return self.name
 
@@ -53,6 +76,15 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=256, null=True)
+
+    def save_order(self):
+        self.save()
+
+    def delete_order(self):
+        self.save()
+
+    def update(self):
+        self.save()
 
     def __str__(self):
         return str(self.id)

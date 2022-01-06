@@ -1,22 +1,141 @@
-<footer style="background: linear-gradient(to top, #99f048,  #e89beb); margin-top:2%">
-    <style>
+<style>
+    .footer {
+        background: linear-gradient(to top, #e99cf0, #99f048);
+        padding-left: 5%;
+        padding-right: 5%;
+        text-transform: capitalize;
+
+    }
+
+    .footer .box-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(2%, .5fr));
+        gap: .2%;
+    }
+
+    .footer .box-container .box h3 {
+        font-size: xx-large;
+        color: var(--black);
+        padding: 2%;
+    }
+
+
+    .footer .box-container .box .links {
+        display: block;
+        font-size: x-large;
+        color: var(--light-color);
+        padding: 2%;
+    }
+
+    .footer .box-container .box .links i {
+        padding-right: 0.5%;
+    }
+
+    .footer .box-container .box .links:hover i {
+        padding-right: 5%;
+    }
+
+    .footer .box-container .box p {
+        line-height: 1.8;
+        font-size: x-large;
+        color: var(--light-color);
+        padding: 2%;
+    }
+
+    .footer .box-container .box .share a {
+        height: 15%;
+        width: 15%;
+        line-height: 15%;
+        font-size: xx-large;
+        color: var(--black);
+        margin-right: 0.2%;
+        background: none;
+        text-align: center;
+    }
+
+    .footer .box-container .box .share a:hover {
+        background: inherit;
+        color: #fff;
+    }
+
+    .footer .box-container .box .email {
+        width: 100%;
+        margin-bottom: 2%;
+        padding: 2%;
+        background: #eee;
+        font-size: larger;
+        color: var(--black);
+        text-transform: none;
+    }
+
+
+
+    .footer .credit {
+        text-align: center;
+        margin-top: .5%;
+        padding: 1%;
+        padding-top: .5%;
+        font-size: x-large;
+        font-weight: 900;
+        color: var(--black);
+        border-top: 5px solid black;
+    }
+
+
+
+    @media (max-width: 450px) {
+
         .footer {
-            display: flex;
-            margin-left: 40%;
-            padding-top: 1%;
-            color: firebrick;
+            text-align: center;
         }
 
-        .nm {
-            margin-left: 2%;
-        }
-    </style>
-    <div class="footer">
-        <div class="md">
-            <p><b>Made with love by <i class="far fa-kiss-wink-heart"></i> </b></p>
+    }
+</style>
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3> Quality Products</h3>
+            <p>quality you can trust.</p>
+            <div class="share">
+                <a href="https://www.instagram.com/sophias_confectionery.ke/" target="_blank"
+                    class="fab fa-instagram"></a>
+                <a href="https://www.youtube.com/channel/UCg1H4ynX55XErp-3Z-bDcFA" target="_blank"
+                    class="fab fa-youtube"></a>
+                <a href="#" target="_blank" class="fab fa-facebook-f"></a>
+                <a href="#" target="_blank" class="fab fa-twitter"></a>
+            </div>
         </div>
-        <div class="nm">
-            <p><b>Job Karani</b></p>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +2547123456 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> xxxxxx@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> nairobi, kenya. </a>
         </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#home" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+            <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+            <a href="#products" class="links"> <i class="fas fa-arrow-right"></i> products </a>
+            <a href="#categories" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
+            <a href="#review" class="links"> <i class="fas fa-arrow-right"></i> review </a>
+            <a href="#blogs" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+        </div>
+
+        <div class="box">
+            <h3>newsletter</h3>
+            <p>subscribe for latest updates</p>
+            <input type="email" placeholder="Your Email" class="email">
+            <button class="btn btn-outline-success" type="submit">Subscribe</button>
+
+        </div>
+
     </div>
-</footer>
+
+    <div class="credit"> created by <span> Job Karani </span> | all rights reserved </div>
+
+</section>
