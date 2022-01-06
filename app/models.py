@@ -50,9 +50,7 @@ class Product(models.Model):
     image = CloudinaryField('image')
     description = models.TextField()
     price = models.FloatField()
-    digital = models.BooleanField(default=False, null=True, blank=False)
-    image = models.ImageField(null=True, blank=True)
-    status = models.BooleanField(default=True)
+    review = models.IntegerField(blank=True, null=True, default=True)
 
     class Meta:
         ordering = ('name',)
@@ -66,8 +64,25 @@ class Product(models.Model):
     def update(self):
         self.save()
 
+    @property
+    def saved_reviews(self):
+        return self.reviews.all()
+
     def __str__(self):
         return self.name
+
+
+class Review(models.Model):
+    review = models.CharField(max_length=250)
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='reviews')
+
+    @classmethod
+    def display_review(cls, product_id):
+        reviews = cls.objects.filter(product_id=product_id)
+        return reviews
 
 
 class Order(models.Model):

@@ -1,5 +1,13 @@
 {%extends 'all-temps/base.html'%} {% block content %} {{block.super}}
-<br /><br /><br />
+<br /><br /><br /> <br>
+
+<style>
+  .row {
+    background-color: brown;
+    width: 30%;
+  }
+</style>
+
 <div class="container">
   <h1>Welcome to Cakes by Sophia</h1>
   <div class="card">
@@ -10,16 +18,17 @@
 
   <div class="row">
     {% for product in products %}
-    <div class="col-md-4" style="margin-top: 2rem;">
-      <img class="thumbnail" src="{{ product.imageURL }}" alt="">
+    <div class="col-md-4" style="margin-top: 2%;">
+      <h6><strong>{{ product.name }}</strong></h6>
+      <img class="card-img-top responsive" alt="Personal" src="{{ product.image.url }}" alt="">
       <div class="box-element product">
-        <h6><strong>{{ product.name }}</strong></h6>
+        <p>{{ product.description}}</p>
 
         <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">
           Add to Cart
         </button>
         <!-- <a class="btn btn-outline-success" href="#">View</a> -->
-        <h4 style="display: inline-block; ">&#x9f3; {{ product.price|floatformat:2 }}</h4>
+        <h4 style="display: inline-block; ">Ksh.{{ product.price|floatformat:2 }}</h4>
       </div>
     </div>
     {% endfor %}

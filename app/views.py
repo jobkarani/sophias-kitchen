@@ -1,14 +1,37 @@
+from .models import *
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from django.http import JsonResponse
 import json
+from .forms import *
 # from .utils import cookieCart, cartData, guestOrder
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'all-temps/index.html')
 
+    products = Product.objects.all()
+    context = {
+        'products': products,
+        # 'cartItems': cartItems,
+    }
+
+    return render(request, 'all-temps/index.html', context)
+
+
+@login_required
+def reviews(request, product_id):
+    form = ReviewForm()
+    product = Product.objects.filter(pk=product_id).first()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.product = product
+            review.save()
+    return redirect('index')
 
 # def store(request):
 #     data = cartData(request)
