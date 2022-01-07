@@ -63,7 +63,7 @@ def create_profile(request):
 def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
-    product = Product.objects.filter(user_id=current_user.id).all()
+    product = Product.objects.filter(id=current_user.id).all()
 
     if request.method == 'POST':
         form = ProfileForm(request.POST)
@@ -98,16 +98,21 @@ def update_profile(request, id):
     return render(request, 'all-temps/update_prof.html', ctx)
 
 
-# def store(request):
-#     data = cartData(request)
-#     cartItems = data['cartItems']
+def About(request):
 
-#     products = Product.objects.all()
-#     context = {
-#         'products': products,
-#         'cartItems': cartItems,
-#     }
-#     return render(request, 'all-temps/store.html', context)
+    return render(request, 'all-temps/aboutus.html',)
+
+
+def store(request):
+    # data = cartData(request)
+    # cartItems = data['cartItems']
+
+    products = Product.objects.all()
+    context = {
+        'products': products,
+        # 'cartItems': cartItems,
+    }
+    return render(request, 'all-temps/store.html', context)
 
 
 # def cart(request):

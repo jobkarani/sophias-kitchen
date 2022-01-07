@@ -3,70 +3,88 @@
 
 {% block content %}
 <br><br><br>
-<div class="row">
-    <div class="col-lg-4">
-        <h3 style="text-align: center;">Indoor Plants</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/indoor_plants.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'plants' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
-    </div>
-    <br>
 
-    <div class="col-lg-4">
-        <h3 style="text-align: center;">Fruit Plants</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/fruit_plants.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'fruits' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
-    </div>
+<style>
+    .container {
+        text-align: center;
+    }
 
-    <div class="col-lg-4">
-        <h3 style="text-align: center;">Medicinal Plants</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/medicinal_plants.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'medicine' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
+    h1 a {
+        list-style: none;
+    }
+
+    .row {
+        padding-left: 5%;
+    }
+</style>
+
+<div class="container">
+    <div>
+        <img src="/static/image/sc1logo.png" style="height:20%;" alt="">
+    </div>
+    <div class="car">
+        <h1> Hey <a href="/profile/" style="color: #834641; list-style: none;">{{ user.username }}</a> Welcome to
+            Cakes
+            by
+            Sophia</h1>
     </div>
 
-    <div class="col-lg-4" style="margin-top: 3rem;">
-        <h3 style="text-align: center;">Flower Plants</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/flower_plants.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'flowers' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
+</div>
+<div class="container">
+    <div class="card">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="/aboutus/">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.youtube.com/channel/UCg1H4ynX55XErp-3Z-bDcFA">Videos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/store/">Shop</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/accounts/login/">Connect</a>
+            </li>
+        </ul>
     </div>
+</div>
 
-    <div class="col-lg-4" style="margin-top: 3rem;">
-        <h3 style="text-align: center;">Seeds</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/seeds.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'seeds' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
-    </div>
+<div class="container">
+    <div class="card">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-12 col-md-6 col-lg-4" style="gap: 15px;">
+                <div class="card mb-4" style=" background: linear-gradient(to bottom right, #f5e237, #f04434); ">
 
-    <div class="col-lg-4" style="margin-top: 3rem;">
-        <h3 style="text-align: center;">Cuttings</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/cuttings.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'cuttings' %}">SHOP<span class="sr-only">(current)</span></a>
-        </div>
-    </div>
+                    <div class="card-body ">
 
-    <div class="col-lg-4" style="margin-top: 3rem;">
-        <h3 style="text-align: center;">Vegetable Plants</h3>
-        <hr>
-        <img class="thumbnail" src="{% static 'images/vegetable_plants.jpg' %}" alt="">
-        <div class="box-element product">
-            <a class="btn btn-success" href="{% url 'vegetables' %}">SHOP<span class="sr-only">(current)</span></a>
+                        <div>
+                            <p class="fade-item mb-2"> {{ product.name|upper }}</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'product' product.id %}">
+                                <img src="{{ product.image.url }}" class="card-img-top responsive" alt="Personal">
+                            </a>
+                        </div>
+                        <div>
+                            <p> <span style="font-weight: 700;">Description:</span> {{ product.description}}</p>
+                        </div>
+                        <div>
+                            <button data-product="{{ product.id }}" data-action="add"
+                                class="btn btn-outline-secondary add-btn update-cart">
+                                <a href="/cart/">Add to Cart</a>
+                            </button>
+                        </div>
+                        <div>
+                            <h4 style="display: inline-block; ">Ksh.{{ product.price|floatformat:2 }}</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
         </div>
     </div>
 </div>
-<br><br><br>
 {% endblock content %}

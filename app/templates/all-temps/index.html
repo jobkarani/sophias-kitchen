@@ -2,51 +2,152 @@
 <br /><br /><br /> <br>
 
 <style>
+  .container {
+    text-align: center;
+  }
 
+  h1 a {
+    list-style: none;
+  }
+
+  .row {
+    padding-left: 5%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .jumbotron {
+    text-align: center;
+  }
 </style>
 
 <div class="container">
-  <h1> <a href="/profile/" style="color: #834641; list-style: none;">{{ user.username|upper }}</a> Welcome to Cakes by
-    Sophia</h1>
+  <div>
+    <img src="/static/image/sc1logo.png" style="height:20%;" alt="">
+  </div>
+  <div class="car">
+    <h1> Hey <a href="/profile/" style="color: #834641; list-style: none;">{{ user.username }}</a> Welcome to
+      Sophia's Confectionery</h1>
+  </div>
+
+</div>
+<div class="container">
   <div class="card">
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link " aria-current="page" href="/aboutus/">About Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.youtube.com/channel/UCg1H4ynX55XErp-3Z-bDcFA">Videos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/store/">Shop</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/accounts/login/">Connect</a>
+      </li>
+    </ul>
   </div>
 </div>
-<div class="card">
-  <h3>Birthday Cakes</h3>
-
+<div class="jumbotron">
+  <video width="80%" height="440" loop autoplay>
+    <source src="/static/image/WhatsApp Video 2022-01-06 at 15.24.55.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<div class="cont">
+  <h2 style="text-align: center;">What We Offer</h2>
   <div class="row">
-    {% for product in products %}
-    <div class="col-md-12 col-md-6 col-lg-4" style="gap: 15px;">
-      <div class="card mb-4" style=" background: linear-gradient(to bottom right, #e19ce4, #99f048); ">
-
-        <div class="card-body ">
-
-          <div>
-            <p class="fade-item mb-2"> {{ product.name|upper }}</p>
-          </div>
-          <div>
-            <a href="{% url 'product' product.id %}">
-              <img src="{{ product.image.url }}" class="card-img-top responsive" alt="Personal">
-            </a>
-          </div>
-          <div>
-            <p>Ingredients: {{ product.description}}</p>
-          </div>
-          <div>
-            <button data-product="{{ product.id }}" data-action="add"
-              class="btn btn-outline-secondary add-btn update-cart">
-              Add to Cart
-            </button>
-          </div>
-          <div>
-            <h4 style="display: inline-block; ">Ksh.{{ product.price|floatformat:2 }}</h4>
-          </div>
-
-        </div>
+    <div class="col-md-4">
+      <div class="card">
+        <h3>Cakes</h3>
+        <p>We bake a variety of cakes like:
+        <ul>
+          <li>Swiss Rolls </li>
+          <li>Pound Cakes</li>
+          <li>Sponge Cakes</li>
+          <li>Cupcakes</li>
+        </ul>
+        </p>
+      </div>
+      <div class="card">
+        <h3>Pastries</h3>
+        <li>Samosas</li>
+        <li>Doughnuts</li>
+        <li>Spring Rolls</li>
+        <li>Meat Pies</li>
+      </div>
+      <div class="card">
+        <h3>Cookies</h3>
+        <li>Biscuits</li>
+        <li>Ginger Breads</li>
       </div>
     </div>
-    {% endfor %}
-
   </div>
 </div>
+<div class="cont">
+  <h2 style="text-align: center;">Festivities</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="h4">
+          <h4>Birthdays</h4>
+        </div>
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Weddings</h4>
+        </div>
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Graduations</h4>
+        </div>
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Baby Showers</h4>
+        </div>
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Holidays</h4>
+        </div>
+        <div class="img">
+          <img src="" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
 {% endblock %}

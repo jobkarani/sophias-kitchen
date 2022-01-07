@@ -55,11 +55,11 @@
                         <div>
                             <!-- <h3>{{user.username}}</h3> -->
                             {% if request.user is user %}
-                            <div>
-                                <a href="{%url 'update_profile' user.id %}" style="color: #D8E9A8;"><i
-                                        class="fa fa-plus text-white"></i>
-                                    Edit Profile
-                                </a>
+                            <div style="margin-bottom: 5%;">
+                                <button class="btn btn-success" type="submit"><a
+                                        href="{%url 'update_profile' user.id %}" style="color: #fff">
+                                        Edit Profile
+                                    </a></button>
                             </div>
                             {% endif %}
 
