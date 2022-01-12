@@ -1,23 +1,99 @@
 {%extends 'all-temps/base.html'%} {% block content %} {{block.super}}
-<br /><br /><br /> <br>
+<br> <br> <br> <br>
 
 <style>
-  .container {
-    text-align: center;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   h1 a {
     list-style: none;
   }
 
-  .row {
-    padding-left: 5%;
-    display: flex;
-    justify-content: space-around;
+  h3 {
+    text-align: center;
+    margin-top: 5%;
   }
 
-  .jumbotron {
+  .just {
+    display: flex;
+    align-items: center;
+  }
+
+  .card {
+    height: 50vh;
+    box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover {
+    filter: drop-shadow(2px 4px 8px rgb(236, 173, 223));
+  }
+
+  .img {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+  }
+
+  .tit {
     text-align: center;
+    font-size: x-large;
+    font-weight: 800;
+    margin: 3%;
+  }
+
+  .tet {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: large;
+  }
+
+  .numbertext {
+    color: #f2f2f2;
+    opacity: .1;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+
+  .dot {
+    height: 1px;
+    width: 1px;
+    background-color: #bbb;
+    opacity: 0.1;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 5.5s;
+    animation-name: fade;
+    animation-duration: 5.5s;
+  }
+
+  @-webkit-keyframes fade {
+    from {
+      opacity: .4
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: .4
+    }
+
+    to {
+      opacity: 1
+    }
   }
 </style>
 
@@ -31,67 +107,274 @@
   </div>
 
 </div>
-<div class="container">
-  <div class="card">
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link " aria-current="page" href="/aboutus/">About Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://www.youtube.com/channel/UCg1H4ynX55XErp-3Z-bDcFA">Videos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/store/">Shop</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="/accounts/login/">Connect</a>
-      </li>
-    </ul>
-  </div>
-</div>
+
 <div class="jumbotron">
   <video width="80%" height="440" loop autoplay>
     <source src="/static/image/WhatsApp Video 2022-01-06 at 15.24.55.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 </div>
-<div class="cont">
+<div class="main">
   <h2 style="text-align: center;">What We Offer</h2>
+</div>
+
+<div class="container">
+  <h3>Cakes</h3>
   <div class="row">
-    <div class="col-md-4">
-      <div class="card">
-        <h3>Cakes</h3>
-        <p>We bake a variety of cakes like:
-        <ul>
-          <li>Swiss Rolls </li>
-          <li>Pound Cakes</li>
-          <li>Sponge Cakes</li>
-          <li>Cupcakes</li>
-        </ul>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.10.13.jpeg" width="80%" alt="">
+        <p class="card-title tit">Swiss Rolls </p>
+        <p class="card-text tet">
+
         </p>
       </div>
-      <div class="card">
-        <h3>Pastries</h3>
-        <li>Samosas</li>
-        <li>Doughnuts</li>
-        <li>Spring Rolls</li>
-        <li>Meat Pies</li>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.19.34.jpeg" width="80%" alt="">
+        <p class="card-title tit">Pound Cakes</p>
+        <p class="card-text tet">Pound cake...is a type of cake made by a pound of the four ingredients
+          Flour,sugar,eggs, butter...
+          It's denser than sponge cake</p>
       </div>
-      <div class="card">
-        <h3>Cookies</h3>
-        <li>Biscuits</li>
-        <li>Ginger Breads</li>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 18.39.31.jpeg" width="80%" alt="">
+        <p class="card-title tit">Sponge Cakes</p>
+        <p class="card-text tet">Sponge Cake- is made up of lots of whipped egg whites .. it's main ingredients are
+          flour
+          sugar and eggs</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.10.11.jpeg" width="80%" alt="">
+        <p class="card-title tit">Cupcakes</p>
+        <p class="card-text tet">
+          Cupcakes- these are tiny cakes baked in small thin paper, designed to serve one person
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.04.55.jpeg" width="80%" alt="">
+        <p class="card-title tit">Lamington Slices</p>
+        <p class="card-text tet">
+          Lamington slices... are basically types of square cakes dipped in sweet sauces, then rolled in dessicated
+          coconut
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 20.39.21.jpeg" width=" 80%"
+          alt="">
+        <p class="card-title tit">Brownies</p>
+        <p class="card-text tet">
+          Brownies- these are square or rectangular chocolate baked confections. They are fudgy and may contain nuts or
+          chocolate chips
+        </p>
       </div>
     </div>
   </div>
 </div>
+
+<div class="container">
+  <h3>Pastries</h3>
+  <div class="row">
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 18.54.42.jpeg" width="80%" alt="">
+        <p class="card-title tit">Samosas</p>
+        <p class="card-text tet">
+          Samosa- is a fried pastry which may be filled with meat, Vegetables it's mostly triangular shaped
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.04.55 (1).jpeg" width="80%"
+          alt="">
+        <p class="card-title tit">Doughnuts</p>
+        <p class="card-text tet">Doughnuts- a type of food that's leavened by yeast and deep fried</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.04.55 (2).jpeg" width="80%"
+          alt="">
+        <p class="card-title tit">Mahamri</p>
+        <p class="card-text tet">Mahamri - it's a type of Swahili snack that's kneaded with coconut and yeast, then deep
+          fried</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.10.11.jpeg" width="80%" alt="">
+        <p class="card-title tit">Spring Rolls</p>
+        <p class="card-text tet">
+          Spring rolls- a type of rolled pastry , that has a thin and crispy wrapping..
+          It may be filled with meat or vegetables
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.04.55.jpeg" width="80%" alt="">
+        <p class="card-title tit">Meat Pies</p>
+        <p class="card-text tet">
+          Lamington slices... are basically types of square cakes dipped in sweet sauces, then rolled in dessicated
+          coconut
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h3>Short Cakes</h3>
+  <div class="row">
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/biscuits.jpeg" width="80%" alt="">
+        <p class="card-title tit">Biscuits</p>
+        <p class="card-text tet">
+          Biscuits - are typically, flat, sweet, hard and unleavened
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/ginger.jpg" width="80%" alt="">
+        <p class="card-title tit">Ginger Breads</p>
+        <p class="card-text tet">Ginger bread man is basically a type of cookie or biscuits that's made up of
+          gingerbread</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.22.33.jpeg" width="80%" alt="">
+        <p class="card-title tit">Cookies</p>
+        <p class="card-text tet">Cookies- it's a type of baked thin snack, that comprises of flour, sugar, butter and
+          eggs...
+          Chocolate chips, nuts, raisins may be added</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h3>Festivities</h3>
+  <div class="row">
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.10.14 (1).jpeg" width="80%"
+          alt="">
+        <p class="card-title tit">Birthdays</p>
+        <p class="card-text tet">
+          Samosa- is a fried pastry which may be filled with meat, Vegetables it's mostly triangular shaped
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3 ">
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <div class="numbertext">1 / 2</div>
+            <img class="card-img-top img d-block " src="/static/image/WhatsApp Image 2022-01-09 at 19.41.44.jpeg"
+              width="80%" alt="">
+          </div>
+
+          <div class="mySlides fade">
+            <img class="card-img-top img d-block " src="/static/image/WhatsApp Image 2022-01-09 at 19.41.43.jpeg"
+              width="80%" alt="">
+          </div>
+        </div>
+        <div style="text-align:center">
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <p class="card-title tit">Weddings</p>
+        <p class="card-text tet">Doughnuts- a type of food that's leavened by yeast and deep fried</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 14.22.56.jpeg" width="80%" alt="">
+        <p class="card-title tit">Graduations</p>
+        <p class="card-text tet">Mahamri - it's a type of Swahili snack that's kneaded with coconut and yeast,
+          then deep
+          fried</p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-06 at 12.19.32 (1).jpeg" width="80%"
+          alt="">
+        <p class="card-title tit">Baby Showers</p>
+        <p class="card-text tet">
+          Spring rolls- a type of rolled pastry , that has a thin and crispy wrapping..
+          It may be filled with meat or vegetables
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 just">
+      <div class="card mt-3">
+        <img class="card-img-top img" src="/static/image/WhatsApp Image 2022-01-09 at 19.04.55.jpeg" width="80%" alt="">
+        <p class="card-title tit">Holidays</p>
+        <p class="card-text tet">
+          Lamington slices... are basically types of square cakes dipped in sweet sauces, then rolled in
+          dessicated
+          coconut
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="cont">
-  <h2 style="text-align: center;">Festivities</h2>
+  <h2 style="text-align: center;">Types of Decorations</h2>
   <div class="row">
     <div class="col-md-6">
       <div class="card">
         <div class="h4">
-          <h4>Birthdays</h4>
+          <h4>Fondant</h4>
+        </div>
+        <div class="img">
+          <img src="/static/image/WhatsApp Image 2022-01-06 at 12.19.35.jpeg" width="80%" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Cake Sail</h4>
+        </div>
+        <div class="img">
+          <img src="/static/image/WhatsApp Image 2022-01-09 at 19.04.58.jpeg" width="80%" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Soft(Whipping) Cream</h4>
+        </div>
+        <div class="img">
+          <img src="/static/image/WhatsApp Image 2022-01-06 at 12.10.12.jpeg" width="80%" alt="">
+        </div>
+        <div class="description">
+          <p></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="h4">
+          <h4>Butter Cream</h4>
         </div>
         <div class="img">
           <img src="" alt="">
@@ -102,10 +385,10 @@
       </div>
       <div class="card">
         <div class="h4">
-          <h4>Weddings</h4>
+          <h4>Edible Print</h4>
         </div>
         <div class="img">
-          <img src="" alt="">
+          <img src="/static/image/WhatsApp Image 2022-01-09 at 18.39.31 (1).jpeg" width="80%" alt="">
         </div>
         <div class="description">
           <p></p>
@@ -113,41 +396,41 @@
       </div>
       <div class="card">
         <div class="h4">
-          <h4>Graduations</h4>
+          <h4>Semi-naked Cakes</h4>
         </div>
         <div class="img">
-          <img src="" alt="">
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="h4">
-          <h4>Baby Showers</h4>
-        </div>
-        <div class="img">
-          <img src="" alt="">
-        </div>
-        <div class="description">
-          <p></p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="h4">
-          <h4>Holidays</h4>
-        </div>
-        <div class="img">
-          <img src="" alt="">
+          <img src="/static/image/WhatsApp Image 2022-01-09 at 19.04.57.jpeg" width="80%" alt="">
         </div>
         <div class="description">
           <p></p>
         </div>
       </div>
 
+
     </div>
   </div>
 </div>
 </div>
+<script>
+  var slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+    setTimeout(showSlides, 5000); // Change image every 2 seconds
+  }
+</script>
 
 {% endblock %}

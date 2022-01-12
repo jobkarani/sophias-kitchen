@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from . import views, utils
 
 
 urlpatterns = [
@@ -9,10 +9,10 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('product/<int:product_id>', views.product, name='product'),
     path('accounts/profile/', views.profile, name='profile'),
-    path('store/', views.store, name='store'),
+    path('shop/', views.shop, name='shop'),
     path('aboutus/', views.About, name='About'),
-    # path('cart/', views.cart, name='cart'),
-    # path('checkout/', views.checkout, name='checkout'),
+    path('cart/', views.cart, name='cart'),
+    path('checkout/', views.checkout, name='checkout'),
     # path('update_item/', views.updateItem, name='update_item'),
     # path('process_order/', views.processOrder, name='process_order'),
 ]
