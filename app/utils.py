@@ -50,25 +50,20 @@ def cookieCart(request):
 
 
 def cartData(request):
-    customer = request.user
+    user = request.user
     order = Order.objects.all()
+    orderItems = OrderItem.objects.all()
     if request.user.is_authenticated:
-        customer = request.user.customerorder
-        created = Order.objects.get_or_create(
-            customer=customer, complete=False)
-        items = order.orderitem_set.all()
-        cartItems = order.get_cart_items
+        user = request.user.order, created = Order.objects.get_or_create(
+            user=user, complete=False)
     else:
         cookieDate = cookieCart(request)
 
-        cartItems = cookieDate['cartItems']
         order = cookieDate['order']
-        items = cookieDate['items']
 
     return {
-        'cartItems': cartItems,
         'order': order,
-        'items': items
+        'orderItems': orderItems,
     }
 
 
@@ -82,12 +77,12 @@ def guestOrder(request, data):
     cookieData = cookieCart(request)
     items = cookieData['items']
 
-    customer, created = Customer.objects.get_or_create(email=email)
-    customer.name = name
-    customer.save()
+    user, created = Customer.objects.get_or_create(email=email)
+    user.name = name
+    user.save()
 
     order = Order.objects.create(
-        customer=customer,
+        user=user,
         complete=False,
     )
 
@@ -100,4 +95,4 @@ def guestOrder(request, data):
             quantity=item['quantity'],
         )
 
-    return customer, order
+    return user, order

@@ -1,0 +1,33 @@
+{% extends 'all-temps/base.html' %} {% load static %} {% block content %}
+<style>
+    .img {
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+    }
+    
+    body {
+        margin-top: 10%;
+    }
+</style>
+<div class="container">
+    {% for product in item %}
+    <div style="margin-top: 30px;" class="col-md-4">
+        <div class="box-element product">
+            <img class="thumbnail img" src="{{product.image.url}}" alt="">
+            <hr>
+            <h6><strong>{{product.name}}</strong></h6>
+            <hr>
+            <div>
+                <p> <span style="font-weight: 700;">Quantity: </span> {{ product.quantity}}</p>
+            </div>
+            <div>
+                <button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-warning add-btn update-cart">
+                    <a href="/cart/{{product.id}}">Add to Cart</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

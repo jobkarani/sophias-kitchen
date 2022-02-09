@@ -103,29 +103,42 @@ def About(request):
     return render(request, 'all-temps/aboutus.html',)
 
 
+def order(request, order_flavour):
+    flavour = Order.objects.get(flavour=order_flavour)
+    user = request.user
+    product = Product.objects.all()
+    return render(request, 'all-temps/order.html', {'product': product, 'flavour': flavour})
+
+
 def shop(request):
     data = cartData(request)
-    cartItems = data['cartItems']
 
     products = Product.objects.all()
     context = {
         'products': products,
-        'cartItems': cartItems,
     }
     return render(request, 'all-temps/shop.html', context)
 
 
-def cart(request):
-    data = cartData(request)
+def product_details(request, product_id):
+    item = Product.objects.all()
+    ctx = {
+        'item': item
+    }
+    return render(request, 'all-temps/product.html', ctx)
 
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
+
+def cart(request, product_id):
+    data = cartData(request)
+    orderItems = data['orderItems']
+    orders = OrderItem.objects.filter(user=request.user)
+    product = Product.objects.get(id=product_id)
+    cartItems = OrderItem(product=product, user=request.user)
+    cartItems.save()
+    # return redirect()
 
     context = {
-        'items': items,
-        'order': order,
-        'cartItems': cartItems,
+        'orders': orders
     }
     return render(request, 'all-temps/cart.html', context)
 
@@ -133,45 +146,48 @@ def cart(request):
 def checkout(request):
     data = cartData(request)
 
-    cartItems = data['cartItems']
+    orderItems = data['orderItems']
     order = data['order']
-    items = data['items']
 
     context = {
-        'items': items,
         'order': order,
-        'cartItems': cartItems,
+        'orderItems': orderItems,
     }
     return render(request, 'all-temps/checkout.html', context)
 
 
-def updateItem(request):
-    data = json.loads(request.body)
-    productId = data['productId']
-    action = data['action']
+def delete_product(request, product_id):
+    cartItems = Product.objects.get(id=product_id)
+    cartItems.delete()
+    return render(request, 'all-temps/cart.html')
 
-    print('Action:', action)
-    print('Product:', productId)
+# def updateItem(request):
+#     data = json.loads(request.body)
+#     productId = data['productId']
+#     action = data['action']
 
-    customer = request.user.customer
-    product = Product.objects.get(id=productId)
-    order, created = Order.objects.get_or_create(
-        customer=customer, complete=False)
+#     print('Action:', action)
+#     print('Product:', productId)
 
-    orderItem, created = OrderItem.objects.get_or_create(
-        order=order, product=product)
+#     user = request.user
+#     product = Product.objects.get(id=productId)
+#     order, created = Order.objects.get_or_create(
+#         user=user, complete=False)
 
-    if action == 'add':
-        orderItem.quantity = (orderItem.quantity + 1)
-    elif action == 'remove':
-        orderItem.quantity = (orderItem.quantity - 1)
+#     orderItem, created = OrderItem.objects.get_or_create(
+#         order=order, product=product)
 
-    orderItem.save()
+#     if action == 'add':
+#         orderItem.quantity = (orderItem.quantity + 1)
+#     elif action == 'remove':
+#         orderItem.quantity = (orderItem.quantity - 1)
 
-    if orderItem.quantity <= 0:
-        orderItem.delete()
+#     orderItem.save()
 
-    return JsonResponse('Item was added', safe=False)
+#     if orderItem.quantity <= 0:
+#         orderItem.delete()
+
+#     return JsonResponse('Item was added', safe=False)
 
 
 def processOrder(request):
@@ -179,9 +195,9 @@ def processOrder(request):
     data = json.loads(request.body)
 
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
+            user=user, complete=False)
 
     else:
         customer, order = guestOrder(request, data)
@@ -195,7 +211,7 @@ def processOrder(request):
 
     if order.shipping == True:
         ShippingAddress.objects.create(
-            customer=customer,
+            user=user,
             order=order,
             address=data['shipping']['address'],
             city=data['shipping']['city'],
