@@ -90,14 +90,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'sophie',
-#         'USER': 'moringa',
-#         'PASSWORD': 'Access',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'sophia',
+        'USER': 'code_monkey',
+        'PASSWORD': 'gerrit',
+    }
+}
 
 cloudinary.config(
     cloud_name="dwrxuibpi",
