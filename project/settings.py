@@ -37,7 +37,7 @@ SECRET_KEY = 'django-insecure-xp28ieoim)30c*rb6lwnm-u%6@^65(y!^592xp20nj36np&83$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,14 +90,14 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sophie',
-        'USER': 'moringa',
-        'PASSWORD': 'Access',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sophie',
+#         'USER': 'moringa',
+#         'PASSWORD': 'Access',
+#     }
+# }
 
 cloudinary.config(
     cloud_name="dwrxuibpi",
