@@ -14,6 +14,7 @@
   {% endif %}
   {% block styles %}
   {% bootstrap_css %}
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -32,8 +33,14 @@
   {% endblock %}
 
   <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     body {
       width: 100%;
+      overflow-x: hidden;
     }
   </style>
 </head>

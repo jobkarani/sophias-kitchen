@@ -1,3 +1,5 @@
+from collections import UserDict, UserList
+import datetime
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -37,7 +39,7 @@ def reviews(request, product_id):
 
 @login_required(login_url='/accounts/login/')
 def product(request, product_id):
-    product = Product.objects.get(id=product_id)
+    product = Product.objects.all()
     review = Review.objects.filter(product=product)
     return render(request, "all-temps/product.html", {"product": product, "review": review})
 
@@ -161,34 +163,6 @@ def delete_product(request, product_id):
     cartItems.delete()
     return render(request, 'all-temps/cart.html')
 
-# def updateItem(request):
-#     data = json.loads(request.body)
-#     productId = data['productId']
-#     action = data['action']
-
-#     print('Action:', action)
-#     print('Product:', productId)
-
-#     user = request.user
-#     product = Product.objects.get(id=productId)
-#     order, created = Order.objects.get_or_create(
-#         user=user, complete=False)
-
-#     orderItem, created = OrderItem.objects.get_or_create(
-#         order=order, product=product)
-
-#     if action == 'add':
-#         orderItem.quantity = (orderItem.quantity + 1)
-#     elif action == 'remove':
-#         orderItem.quantity = (orderItem.quantity - 1)
-
-#     orderItem.save()
-
-#     if orderItem.quantity <= 0:
-#         orderItem.delete()
-
-#     return JsonResponse('Item was added', safe=False)
-
 
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
@@ -197,7 +171,7 @@ def processOrder(request):
     if request.user.is_authenticated:
         customer = request.user
         order, created = Order.objects.get_or_create(
-            user=user, complete=False)
+            user=UserDict, complete=False)
 
     else:
         customer, order = guestOrder(request, data)
@@ -211,7 +185,7 @@ def processOrder(request):
 
     if order.shipping == True:
         ShippingAddress.objects.create(
-            user=user,
+            user=UserList,
             order=order,
             address=data['shipping']['address'],
             city=data['shipping']['city'],

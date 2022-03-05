@@ -65,3 +65,9 @@
 //             location.reload()
 // 		});
 // }
+
+// document.querySelector('#cakes').addEventListener('click', function(){
+//     const display = document.querySelector('.cat1').textContent;
+//     console.log(display);
+//     document.querySelector('body').style.backgroundColor = '#60b347';
+//   })
