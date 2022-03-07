@@ -15,8 +15,3 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['profile_photo', 'email', 'phone_number']
 
-
-class ReviewForm(forms.ModelForm):
-    class Meta:
-        model = Review
-        fields = ['review']

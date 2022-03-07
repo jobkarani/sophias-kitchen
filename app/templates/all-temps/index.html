@@ -94,7 +94,7 @@
         display: flex;
     }
     .car{
-      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjlnXxSXZxHpP1-wP2fe_CrRL3Vmb9LIZbxA&usqp=CAU');
+      background-image: url('https://cdn.pixabay.com/photo/2019/12/14/22/59/christmas-4695973__340.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       height: 70vh;
@@ -157,6 +157,11 @@
   <!-- cakes  -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
   <div class="cat1 ">
     <div class="row mt-4">
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
+        </div>
+      </header>
     {% for prod in products %}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
@@ -176,6 +181,11 @@
   <!-- pastries -->
   <div class="cat2">
     <div class="row mt-4">
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
+        </div>
+      </header>
     {% for prod in products %}
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
@@ -195,6 +205,11 @@
   <!-- shortcakes -->
   <div class="cat3">
     <div class="row mt-4">
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
+        </div>
+      </header>
     {% for prod in products %}
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
@@ -214,6 +229,11 @@
   <!-- festivities  -->
   <div class="cat4">
     <div class="row mt-4">
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
+        </div>
+      </header>
     {% for prod in products %}
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
@@ -233,6 +253,11 @@
   <!-- icying  -->
   <div class="cat5">
     <div class="row mt-4">
+      <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
+        </div>
+      </header>
     {% for prod in products %}
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
@@ -254,8 +279,8 @@
       <div class="card tres" style="width: 28rem;border: 1px solid grey;">
         <div class="card-body">
           <h5 class="card-title">Holiday Sales</h5>
-          <h3 class="card-title" style="color:#9C0646;font-family: Playball;">Sales Upto 50%</h3>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h3 class="card-title" style="color:#9C0646;font-family: Playball;font-weight: 900; font-size: xx-large;">Sales Upto 50%</h3>
+          <p class="card-text" style="color:#9C0646;font-size: larger;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           <a href="#" class="btn btn-outline-danger" style="color: #9C0646;">Purchase Now</a>
         </div>
       </div>

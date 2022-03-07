@@ -1,0 +1,521 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    .cax {
+        background: linear-gradient(to bottom right, #F7DBF0, #BEAEE2);
+    }
+    
+    .just {
+        display: flex;
+        align-items: center;
+    }
+    
+    .card {
+        margin-bottom: 5%;
+        height: 100%;
+        width: 100%;
+        box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 22px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .card:hover {
+        filter: drop-shadow(2px 4px 8px rgb(236, 173, 223));
+    }
+    
+    .tit {
+        text-align: center;
+        font-size: x-large;
+        font-weight: 800;
+    }
+    
+    .tet {
+        margin-left: 10%;
+        margin-right: 10%;
+        font-size: large;
+    }
+    
+    .img {
+        width: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div class="container mt-5">
+    <div>
+        <img src="/static/image/sc1logo.png" style="height:20%;" alt="">
+    </div>
+    <div class="car">
+        <h1>Shop</h1>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/WhatsApp Image 2022-01-09 at 20.26.44 (copy).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">CHOCOLATE FUDGE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg-Ksh.1600 <br> 1kg- Ksh.2200 <br> 2kg- Ksh.3350 <br> 3kg- Ksh.4400 <br> 4kg-Ksh.5500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.17 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">BEACH WAVE RED VELVET SPONGE CAKE </p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1000 <br> 1kg - Ksh 1500 <br> 2kg - Ksh 2500 <br> 3kg - Ksh 3650 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.18 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">VANILLA SPONGE CAKE WITH CANDLES</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 900 <br> 1kg - Ksh 1400 <br> 2kg - Ksh 2400 <br> 3kg - Ksh 3500 <br> 4kg - Ksh 4400
+                    </p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.18 AM (1).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">VANILLA BLUEBERRY FLORAL CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1100 <br> 1kg - Ksh 1800 <br> 2kg - Ksh 2900 <br> 3kg - Ksh 3700 <br> 4kg - Ksh 4700</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.20 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">COFFEE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 950 <br> 1kg - Ksh 1450 <br> 2kg - Ksh 2450 <br> 3kg - Ksh 3500 <br> 4kg - Ksh 4400</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/WhatsApp Image 2022-01-06 at 12.10.14 (3).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2"> BABY SHOWER FRUIT CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1kg - Ksh 2500 <br> 2kg - Ksh 3500 <br> 4kg - Ksh 4700 <br> 5kg - Ksh 6000</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.21 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">RED VELVET SPONGE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1000 <br> 1kg - Ksh 1500 <br> 2kg - Ksh 2500 <br> 3kg - Ksh 3650 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.21 AM (1).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">FLORAL COCONUT SPONGE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1150 <br> 1kg - Ksh 1650 <br> 2kg - Ksh 2700 <br> 3kg - Ksh 3500 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 12.09.22 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">VANILLA SPONGE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - kSH 900 <br> 1kg - Ksh 1400 <br> 2kg - Ksh 2400 <br> 3kg - Ksh 3500 <br> 4kg - Ksh 4400</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 9.03.48 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2"> CUSTOMIZED RED VELVET CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1050 <br> 1kg - Ksh 1600 <br> 2kg - Ksh 2800 <br> 3kg - Ksh 3600 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 9.03.49 AM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">CUSTOMIZED VANILLA PJ MASK CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1050 <br> 1kg - Ksh 1600 <br> 2kg - Ksh 2600 <br> 3kg - Ksh 3500 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 9.03.51 AM (1).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2"> SQUARE VANILLA CAKE WITH STRAWBERRIES </p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br>1/2kg - Ksh 1250 <br> 1kg - Ksh 1700 <br> 2kg - Ksh 2800 <br> 3kg - Ksh 3800 <br> 4kg - Ksh 4500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 4.50.19 PM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">FONDANT MARBLE CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1kg - Ksh 1700 <br> 2kg - Ksh 2900 <br> 3kg - Ksh 4000 <br> 4kg - Ksh 5500</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 4.59.04 PM.jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">SPONGE BOB VANILLA CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1kg - Ksh 1500 <br> 2kg - Ksh 2800 <br> 3kg - Ksh 3700 <br> 4kg - Ksh 4800</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 11.49.50 PM (1).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">WHITE FOREST CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1500 <br> 1kg - Ksh 2150 <br> 2kg - Ksh 3200 <br> 3kg - Ksh 4200 <br> 4kg - Ksh 5150</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 11.49.51 PM (1).jpeg" class="img responsive" alt="Personal">
+                </div>
+                <div class="card-title tit">
+                    <p class="fade-item mb-2">BLACK FOREST CAKE</p>
+                </div>
+                <div class="card-text tet">
+                    <p> <span style="font-weight: 700;">Sizes:</span> <br> 1/2kg - Ksh 1500 <br> 1kg - Ksh 2150 <br> 2kg - Ksh 3200 <br> 3kg - Ksh 4200 <br> 4kg - Ksh 5150</p>
+                </div>
+
+                <div class="card-text tet">
+                    <button data-product="{{ product.id }}" data-action="POST" class="btn btn-outline-warning add-btn update-cart">
+                        <a href="/product_details/{{product.id}}">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just">
+            <div class="card cax mt-3">
+                <div class="card-img-top">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 11.49.49 PM.jpeg" class=" img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">FlORAL SEMI NAKED VANILLA CAKE</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br> 3kg - Ksh 3800</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 11.49.50 PM.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 "> CINNAMON BREAD </p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br> 800g - Ksh 200</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-14 at 11.49.51 PM.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">CUSTOMIZED VANILLA CUPCAKES</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br> 12PCS - Ksh 990/</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/WhatsApp Image 2022-01-09 at 20.39.21.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">BROWNIES</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br> 8PCS - Ksh 800</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/WhatsApp Image 2022-01-06 at 12.10.13.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">MARBLE SWISS ROLLS</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br>1 full roll - Ksh 450</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 9.03.50 AM.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">VANILLA CUPCAKES</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br> 6PCS - Ksh 350</p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product_details/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 just ">
+            <div class="card cax mt-3 ">
+                <div class="card-img-top ">
+                    <img src="/static/image/shop/WhatsApp Image 2022-01-15 at 9.03.51 AM.jpeg" class="img responsive " alt="Personal ">
+                </div>
+                <div class="card-title tit ">
+                    <p class="fade-item mb-2 ">CUSTOMIZED VANILLA BLUEBERRY CAKE</p>
+                </div>
+                <div class="card-text tet ">
+                    <p> <span style="font-weight: 700; ">Sizes:</span> <br>1/2kg & 4 semi-naked side pieces - Ksh 1500
+                    </p>
+                </div>
+
+                <div class="card-text tet ">
+                    <button data-product="{{ product.id }} " data-action="POST " class="btn btn-outline-warning add-btn update-cart ">
+                        <a href="/product/{{product.id}} ">Make order</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

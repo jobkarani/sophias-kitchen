@@ -1,48 +1,12 @@
-from collections import UserDict, UserList
-import datetime
+from django.forms import SlugField
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .email import send_welcome_email
-from django.http import JsonResponse
-import json
 from .forms import *
-from .utils import *
-# from .utils import cookieCart, cartData, guestOrder
 
-
-# Create your views here.
-def index(request):
-
-    products = Product.objects.all()
-    context = {
-        'products': products,
-    }
-
-    return render(request, 'all-temps/index.html', context)
-
-
-@login_required
-def reviews(request, product_id):
-    form = ReviewForm()
-    product = Product.objects.filter(pk=product_id).first()
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.user = request.user
-            review.product = product
-            review.save()
-    return redirect('index')
-
-
-@login_required(login_url='/accounts/login/')
-def product(request, product_id):
-    product = Product.objects.all()
-    review = Review.objects.filter(product=product)
-    return render(request, "all-temps/product.html", {"product": product, "review": review})
-
+# auth 
 
 @login_required(login_url="/accounts/login/")
 def create_profile(request):
@@ -105,92 +69,49 @@ def About(request):
     return render(request, 'all-temps/aboutus.html',)
 
 
-def order(request, order_flavour):
-    flavour = Order.objects.get(flavour=order_flavour)
-    user = request.user
-    product = Product.objects.all()
-    return render(request, 'all-temps/order.html', {'product': product, 'flavour': flavour})
+# pages 
 
+def index(request, category_slug=None):
 
-def shop(request):
-    data = cartData(request)
+    categories = None
+    products = None
 
-    products = Product.objects.all()
+    if category_slug != None:
+        categories = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=categories, is_available=True)
+        product_count = products.count()
+    else:
+        products = Product.objects.all().filter(is_available=True)
+        product_count = products.count()
     context = {
         'products': products,
+        'product_count':product_count,
+    }
+
+    return render(request, 'all-temps/index.html', context)
+
+
+
+def shop(request, category_slug=None):
+    categories = None
+    products = None
+
+    if category_slug != None:
+        categories = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(category=categories, is_available=True)
+        product_count = products.count()
+    else:
+        products = Product.objects.all().filter(is_available=True)
+        product_count = products.count()
+    context = {
+        'products': products,
+        'product_count':product_count,
     }
     return render(request, 'all-temps/shop.html', context)
 
 
-def product_details(request, product_id):
-    item = Product.objects.all()
-    ctx = {
-        'item': item
-    }
-    return render(request, 'all-temps/product.html', ctx)
 
-
-def cart(request, product_id):
-    data = cartData(request)
-    orderItems = data['orderItems']
-    orders = OrderItem.objects.filter(user=request.user)
-    product = Product.objects.get(id=product_id)
-    cartItems = OrderItem(product=product, user=request.user)
-    cartItems.save()
-    # return redirect()
-
-    context = {
-        'orders': orders
-    }
-    return render(request, 'all-temps/cart.html', context)
-
-
-def checkout(request):
-    data = cartData(request)
-
-    orderItems = data['orderItems']
-    order = data['order']
-
-    context = {
-        'order': order,
-        'orderItems': orderItems,
-    }
-    return render(request, 'all-temps/checkout.html', context)
-
-
-def delete_product(request, product_id):
-    cartItems = Product.objects.get(id=product_id)
-    cartItems.delete()
-    return render(request, 'all-temps/cart.html')
-
-
-def processOrder(request):
-    transaction_id = datetime.datetime.now().timestamp()
-    data = json.loads(request.body)
-
-    if request.user.is_authenticated:
-        customer = request.user
-        order, created = Order.objects.get_or_create(
-            user=UserDict, complete=False)
-
-    else:
-        customer, order = guestOrder(request, data)
-
-    total = float(data['form']['total'])
-    order.transaction_id = transaction_id
-
-    if total == order.get_cart_total:
-        order.complete = True
-    order.save()
-
-    if order.shipping == True:
-        ShippingAddress.objects.create(
-            user=UserList,
-            order=order,
-            address=data['shipping']['address'],
-            city=data['shipping']['city'],
-            state=data['shipping']['state'],
-            zipcode=data['shipping']['zipcode'],
-        )
-
-    return JsonResponse('Payment complete', safe=False)
+@login_required(login_url='/accounts/login/')
+def product(request):
+    product = Product.objects.all()
+    return render(request, "all-temps/product.html", {"product": product})
