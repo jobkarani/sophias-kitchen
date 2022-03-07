@@ -11,6 +11,62 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    .img-wrap {
+  text-align: center;
+  display: block;
+}
+.img-wrap img {
+  max-width: 100%;
+}
+
+.icon-wrap {
+  text-align: center;
+  display: inline-block;
+}
+
+.price-wrap {
+  letter-spacing: -0.7px;
+}
+.icon-control {
+  margin-top: 5px;
+  float: right;
+  font-size: 80%;
+}
+.card-header a{
+  text-decoration: none;
+}
+
+.card-header .title {
+  margin-bottom: 0;
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.filter-group {
+  border-bottom: 1px solid #e4e4e4;
+}
+.filter-group .card-header {
+  border-bottom: 0;
+}
+.filter-group:last-child {
+  border-bottom: 0;
+}
+.list-menu {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.list-menu li {
+  margin-bottom: 5px;
+}
+.list-menu a {
+  color: #9C0646;
+  text-decoration: none;
+}
+.list-menu a:hover {
+  background-color: #9C0646;
+  color: #fff;
+}
 </style>
 <div class="conta">
     <div class="moja">
@@ -18,6 +74,35 @@
     </div>
     <img src="https://cdn.pixabay.com/photo/2019/02/25/17/36/mockup-4020150__340.jpg" alt="" style="background-repeat: no-repeat;background-size: cover;width: 100%;max-height: 60vh;">
 </div>
+<div class="row">
+  <aside class="col-md-3">
+
+<div class="card">
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Categories</h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_1" style="">
+			<div class="card-body">
+
+				<ul class="list-menu">
+					<li><a href="{% url 'shop' %}">All Products  </a></li>
+					{% for category in links %}
+				<li><a href="{{ category.get_url }}">{{ category.name }}  </a></li>
+					{% endfor %}
+				</ul>
+			</div> 
+		</div>
+	</article> 
+
+</div>
+</aside>
+
+<main class="col-md-9">
+
 
 <header class="border-bottom mb-4 pb-3">
   <div class="form-inline">
@@ -25,22 +110,34 @@
   </div>
 </header>
 
-    <div class="cat3">
-        <div class="row mt-4">
+        <div class="row ">
+        {% if products %}
         {% for prod in products %}
-        <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-        <div class="card cat" style="width: 18rem; border: none;">
-          <img src="{{ prod.image.url }}" class="card-img" alt="...">
-          <div class="card-body">
+        <div class="col-md-4">
+        <figure class="card card-product-grid cat" style="width: 18rem; border: none;">
+          <div class="img-wrap">
+            <img src="{{ prod.image.url }}" class="card-img" alt="...">
+          </div>
+          <figcaption class="info-wrap">
+          <div class="fix-height">
             <h5 class="card-title">{{ prod.name }}</h5>
-            <p class="card-text"> Ksh {{ prod.price }}</p>
+            <div class="price-wrap mt-2">
+              <p class="card-text"> Ksh {{ prod.price }}</p>
+            </div>
             <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
           </div>
           <a href="#" class="btn btn-block " style="background-color: #9C0646;color: #fff;">Add to Cart<i class="uil uil-shopping-cart" style="font-size: x-large; margin-left: 10%;"></i></a>
-        </div>
+        </figcaption>
+        </figure>
       </div>
           {% endfor %}
+          {% else %}
+          <div>
+            <h2>No result found. Please try again.</h2>
+          </div>
+          {% endif %}
         </div>
-      </div>
 
+    </main>
+    </div>
 {% endblock %}

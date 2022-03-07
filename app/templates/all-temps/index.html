@@ -1,51 +1,4 @@
 {%extends 'all-temps/base.html'%} {% block content %} {{block.super}}
-<script>
-  $(document).ready(function(){
-    $(window).on('load',function(){
-      $(".cat1").show();
-      $(".cat2").hide();
-      $(".cat3").hide();
-      $(".cat4").hide();
-      $(".cat5").hide();
-    });
-    $("#cakes").click(function(){
-      $(".cat1").show();
-      $(".cat2").hide();
-      $(".cat3").hide();
-      $(".cat4").hide();
-      $(".cat5").hide();
-    });
-    $("#pastries").click(function(){
-      // document.querySelector('.cat2').style.backgroundColor = '#60b347';
-      $(".cat2").show();
-      $(".cat1").hide();
-      $(".cat3").hide();
-      $(".cat4").hide();
-      $(".cat5").hide();
-    });
-    $("#shortcakes").click(function(){
-      $(".cat3").show();
-      $(".cat2").hide();
-      $(".cat1").hide();
-      $(".cat4").hide();
-      $(".cat5").hide();
-    });
-    $("#festive").click(function(){
-      $(".cat4").show();
-      $(".cat2").hide();
-      $(".cat3").hide();
-      $(".cat1").hide();
-      $(".cat5").hide();
-    });
-    $("#ice").click(function(){
-      $(".cat5").show();
-      $(".cat2").hide();
-      $(".cat3").hide();
-      $(".cat4").hide();
-      $(".cat1").hide();
-    });
-  });
-  </script>
 <style>
     * {
         margin: 0;
@@ -146,15 +99,13 @@
       </div>
 </div>
 <div class="container conn">
-<h4 style="color: #9C0646; text-align: center;">Categories</h4>
-<div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left: 30%;">
-    <button type="button" data-toggle="tab" class="btn btn-outline-danger" id="cakes">CAKES</button>
-    <button type="button" data-toggle="tab" class="btn btn-outline-danger" id="pastries">PASTRIES</button>
-    <button type="button" data-toggle="tab" class="btn btn-outline-danger" id="shortcakes">SHORT CAKES</button>
-    <button type="button" data-toggle="tab" class="btn btn-outline-danger" id="festive">FESTIVITIES</button>
-    <button type="button" data-toggle="tab" class="btn btn-outline-danger" id="ice">ICYINGS</button>
+<h4 style="color: #9C0646; text-align: center;">Trending</h4>
+<!-- <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left: 30%;">
+  <a class="btn btn-outline-danger active" href="{% url 'shop' %}">All Products </a>
+  {% for category in links %}
+    <a   href="{{ category.get_url }}" class="btn btn-outline-danger " >{{ category.name }}</a>
+  {% endfor %} -->
   </div>
-  <!-- cakes  -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
   <div class="cat1 ">
     <div class="row mt-4">
       <header class="border-bottom mb-4 pb-3">
@@ -163,102 +114,6 @@
         </div>
       </header>
     {% for prod in products %}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-    <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-    <div class="card cat" style="width: 18rem; border: none;">
-      <img src="{{ prod.image.url }}" class="card-img" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ prod.name }}</h5>
-        <p class="card-text"> Ksh {{ prod.price }}</p>
-        <a href="#" class="btn"><i class="uil uil-shopping-cart" style="font-size: xx-large;"></i></a>
-        <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
-      </div>
-    </div>
-  </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- pastries -->
-  <div class="cat2">
-    <div class="row mt-4">
-      <header class="border-bottom mb-4 pb-3">
-        <div class="form-inline">
-          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
-        </div>
-      </header>
-    {% for prod in products %}
-    <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-    <div class="card cat" style="width: 18rem; border: none;">
-      <img src="{{ prod.image.url }}" class="card-img" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ prod.name }}</h5>
-        <p class="card-text"> Ksh {{ prod.price }}</p>
-        <a href="#" class="btn"><i class="uil uil-shopping-cart" style="font-size: xx-large;"></i></a>
-        <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
-      </div>
-    </div>
-  </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- shortcakes -->
-  <div class="cat3">
-    <div class="row mt-4">
-      <header class="border-bottom mb-4 pb-3">
-        <div class="form-inline">
-          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
-        </div>
-      </header>
-    {% for prod in products %}
-    <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-    <div class="card cat" style="width: 18rem; border: none;">
-      <img src="{{ prod.image.url }}" class="card-img" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ prod.name }}</h5>
-        <p class="card-text"> Ksh {{ prod.price }}</p>
-        <a href="#" class="btn"><i class="uil uil-shopping-cart" style="font-size: xx-large;"></i></a>
-        <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
-      </div>
-    </div>
-  </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- festivities  -->
-  <div class="cat4">
-    <div class="row mt-4">
-      <header class="border-bottom mb-4 pb-3">
-        <div class="form-inline">
-          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
-        </div>
-      </header>
-    {% for prod in products %}
-    <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-    <div class="card cat" style="width: 18rem; border: none;">
-      <img src="{{ prod.image.url }}" class="card-img" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ prod.name }}</h5>
-        <p class="card-text"> Ksh {{ prod.price }}</p>
-        <a href="#" class="btn"><i class="uil uil-shopping-cart" style="font-size: xx-large;"></i></a>
-        <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
-      </div>
-    </div>
-  </div>
-      {% endfor %}
-    </div>
-  </div>
-
-  <!-- icying  -->
-  <div class="cat5">
-    <div class="row mt-4">
-      <header class="border-bottom mb-4 pb-3">
-        <div class="form-inline">
-          <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
-        </div>
-      </header>
-    {% for prod in products %}
     <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
     <div class="card cat" style="width: 18rem; border: none;">
       <img src="{{ prod.image.url }}" class="card-img" alt="...">

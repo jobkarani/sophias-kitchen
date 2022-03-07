@@ -72,7 +72,6 @@ def About(request):
 # pages 
 
 def index(request, category_slug=None):
-
     categories = None
     products = None
 
@@ -87,9 +86,7 @@ def index(request, category_slug=None):
         'products': products,
         'product_count':product_count,
     }
-
     return render(request, 'all-temps/index.html', context)
-
 
 
 def shop(request, category_slug=None):
@@ -111,7 +108,3 @@ def shop(request, category_slug=None):
 
 
 
-@login_required(login_url='/accounts/login/')
-def product(request):
-    product = Product.objects.all()
-    return render(request, "all-temps/product.html", {"product": product})
