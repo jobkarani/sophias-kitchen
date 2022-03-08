@@ -125,7 +125,7 @@ def _cart_id(request):
         return cart
 
 def add_cart(request, product_id):
-    product = Product.objects.get(id = id) #get product
+    product = Product.objects.get(id = product_id) #get product
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request)) #get cart using cart_id present in the session
     except Cart.DoesNotExist:
@@ -149,6 +149,6 @@ def add_cart(request, product_id):
 
     return redirect('cart')
 
-def cart(request):
+def cart(request): 
 
     return render(request, 'all-temps/cart.html')
