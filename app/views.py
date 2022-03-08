@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.forms import SlugField
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -107,6 +108,15 @@ def shop(request, category_slug=None):
     return render(request, 'all-temps/shop.html', context)
 
 def product_detail(request, category_slug, product_slug):
+    try:
+        single_product = Product.objects.get(category__slug=category_slug,slug=product_slug)
+    except Exception as e:
+        raise e
+    
+    context = {
+        'single_product': single_product,
+    }
 
-    return render(request, 'all-temps/product.html', context)
+
+    return render(request, 'all-temps/product.html',context)
 

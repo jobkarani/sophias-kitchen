@@ -151,17 +151,21 @@
         <div class="col-md-4">
         <figure class="card card-product-grid cat" style="width: 18rem;">
           <div class="img-wrap">
+          <a href="{{ prod.get_url }}">
             <img src="{{ prod.image.url }}" class="card-img" alt="...">
+          </a>
           </div>
           <figcaption class="info-wrap">
           <div class="fix-height">
+          <a href="{{ prod.get_url }}">
             <h5 class="card-title">{{ prod.name }}</h5>
+          </a>
             <div class="price-wrap mt-2">
               <p class="card-text"> Ksh {{ prod.price }}</p>
             </div>
-            <a href="#" class="btn love"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
+            <a href="{{ prod.get_url }}" class="btn love"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
           </div>
-          <a href="#" class="btn btn-overlay " style="background-color: #9C0646;color: #fff;">Add to Cart<i class="uil uil-shopping-cart" style="font-size: x-large; margin-left: 10%;"></i></a>
+          <a href="{{ prod.get_url }}" class="btn btn-overlay " style="background-color: #9C0646;color: #fff;">View Product</i></a>
         </figcaption>
         </figure>
       </div>
