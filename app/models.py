@@ -54,6 +54,11 @@ TOPPINGS_CHOICES = (
     ('ASSORTED CHOCOLATES', 'ASSORTED CHOCOLATES'),
 )
 
+SIZE_CHOICES =(
+    ('Small', 'Small'),
+    ('Medium', 'Medium'),
+    ('Large', 'Large'),
+)
 
 class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length=30)
@@ -66,7 +71,6 @@ class Profile(models.Model):
     email = models.EmailField(max_length=256, null=True)
     phone_number = models.CharField(max_length=100)
     date_joined = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return self.user.username
@@ -95,6 +99,9 @@ class Product(models.Model):
     stock = models.IntegerField()
     is_available = models.BooleanField(default = True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    flavour =  models.CharField(max_length=60, choices=FLAVOUR_CHOICES, default="VANILLA")
+    topping = models.CharField(max_length=60, choices=TOPPINGS_CHOICES, default="GUMMIES")
+    size = models.CharField(max_length=60, choices=SIZE_CHOICES, default="Medium")
 
     class Meta:
         ordering = ('name',)

@@ -3,11 +3,14 @@
 
 {% block content %}
 
-
+<style>
+	section{
+		margin-top: 10%;
+	}
+</style>
 <section class="section-content padding-y bg">
 <div class="container">
 
-<!-- ============================ COMPONENT 1 ================================= -->
 {% if not cart_items %}
 	<h2 class="text-center">Your Shopping Cart is Empty</h2>
 	<br>
@@ -113,10 +116,8 @@
 
 </div> <!-- row.// -->
 {% endif %}
-<!-- ============================ COMPONENT 1 END .// ================================= -->
 
 </div> <!-- container .//  -->
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
 {% endblock %}

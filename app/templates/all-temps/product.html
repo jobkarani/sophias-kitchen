@@ -10,7 +10,6 @@
 <section class="section-content padding-y bg">
 	<div class="container">
 
-		<!-- ============================ COMPONENT 1 ================================= -->
 		<div class="card">
 			<div class="row no-gutters">
 				<aside class="col-md-6">
@@ -53,54 +52,29 @@
 							</div>
 
 							<p>{{ single_product.description }}</p>
-
-
-							<!-- <hr>
-							<div class="row">
-								<div class="item-option-select">
-									<h6>Choose Flavour</h6>
-									<select name="flavour" class="form-control" required>
-										<option value="" disabled selected>Select</option>
-										{% for i in single_product.variation_set.colors %}
-										<option value="{{ i.variation_value | lower }}"></option>
-										{% endfor %}
-									</select>
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<div class="prof-body">
+									<form action="{% url ''%}" method="post" enctype="multipart/form-data">
+					
+										{% csrf_token%}
+										{% bootstrap_form form %}
+										<div class="form-group text-center">
+											<input type="submit" class="m-4 btn btn-primary login-btn" value="CUSTOMIZE">
+										</div>
+										<input type="hidden" name="next" value="{{next}}">
+									</form>
 								</div>
 							</div>
-							<div class="row">
-								<div class="item-option-select">
-									<h6>Choose Toppings</h6>
-									<select name="flavour" class="form-control" required>
-										<option value="" disabled selected>Select</option>
-										{% for i in single_product.variation_set.colors %}
-										<option value="{{ i.variation_value | lower }}"></option>
-										{% endfor %}
-									</select>
-								</div>
-							</div>
-							<div class="row">
-								<div class="item-option-select">
-									<h6>Select Size</h6>
-									<select name="size" class="form-control" required>
-										<option value="" disabled selected>Select</option>
-										{% for i in single_product.variation_set.sizes %}
-										<option value="{{ i.variation_value | lower }}"></option>
-										{% endfor %}
-									</select>
-								</div>
-							</div>
-							<hr> -->
 							{% if single_product.stock <= 0 %}
 							<h5 class="text-danger">Out of Stock</h5>
 							{% else %}
-							<button href="{% url 'add_cart' single_product.id %}" type="submit" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fa fa-shopping-cart"></i> </button>
+							<a href="{% url 'add_cart' single_product.id %}" class="btn btn-primary"> <span class="text">Add to Cart</span> <i class="fa fa-shopping-cart"></i> </a>
 							{% endif %}
 						</article> <!-- product-info-aside .// -->
 					</form>
 				</main> <!-- col.// -->
 			</div> <!-- row.// -->
 		</div> <!-- card.// -->
-		<!-- ============================ COMPONENT 1 END .// ================================= -->
 
 		<br>
 
@@ -202,6 +176,5 @@
 
 	</div> <!-- container .//  -->
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
 {% endblock %}

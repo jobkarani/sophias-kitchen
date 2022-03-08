@@ -1,3 +1,4 @@
+from itertools import product
 from multiprocessing import context
 from django.forms import SlugField
 from .models import *
@@ -61,7 +62,11 @@ def update_profile(request, id):
             profile.save()
             return redirect('profile')
 
-    ctx = {"form": form}
+    ctx = {
+        "form": form,
+        "user":user,
+        "profile":profile,
+        }
     return render(request, 'all-temps/update_prof.html', ctx)
 
 
@@ -108,13 +113,17 @@ def shop(request, category_slug=None):
     return render(request, 'all-temps/shop.html', context)
 
 def product_detail(request, category_slug, product_slug):
+    flavour = None
+    topping = None
     try:
         single_product = Product.objects.get(category__slug=category_slug,slug=product_slug)
+        product = Product.objects.all()
     except Exception as e:
         raise e
     
     context = {
         'single_product': single_product,
+        'product':product,
     }
     return render(request, 'all-temps/product.html',context)
 
@@ -136,7 +145,7 @@ def add_cart(request, product_id):
 
     try:
         cart_item = CartItem.objects.get(product=product, cart=cart)
-        cart_item.quantity += 1 #adds cart items
+        cart_item.quantity += 1 #increments cart items
         cart_item.save()
 
     except CartItem.DoesNotExist:
@@ -146,7 +155,8 @@ def add_cart(request, product_id):
             cart = cart,
         )
         cart_item.save()
-
+    # return HttpResponse(cart_item.product)
+    # exit()
     return redirect('cart')
 
 def cart(request): 

@@ -15,3 +15,7 @@ class UpdateProfileForm(forms.ModelForm):
         model = Profile
         fields = ['profile_photo', 'email', 'phone_number']
 
+class CustomizeForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['flavour','topping', 'size']
