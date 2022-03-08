@@ -116,7 +116,9 @@ def product_detail(request, category_slug, product_slug):
     context = {
         'single_product': single_product,
     }
-
-
     return render(request, 'all-temps/product.html',context)
 
+ 
+def cart(request):
+
+    return render(request, 'all-temps/cart.html')
