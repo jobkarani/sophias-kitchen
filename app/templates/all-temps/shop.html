@@ -38,6 +38,7 @@
 
 .card-header .title {
   margin-bottom: 0;
+  color: black;
   font-size: x-large;
   font-weight: bolder;
 }
@@ -65,7 +66,41 @@
 }
 .list-menu a:hover {
   background-color: #9C0646;
+  border-radius: 5% 5% 5% 5%;
+  padding: 2%;
   color: #fff;
+}
+.card-product-grid {
+  margin-bottom: 20%;
+}
+.card-product-grid .img-wrap {
+  border-radius: 0.2rem 0.2rem 0 0;
+  height: 220px;
+  padding: 8%;
+}
+.card-product-grid .info-wrap {
+  overflow: hidden;
+  padding-top: 30%;
+  padding-left: 10%;
+}
+.love{
+  position: absolute;
+  left: 60%;
+  top: 80%;
+}
+
+.card-product-grid .btn-overlay {
+  left: 0;
+  color: #fff;
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  position: absolute;
+}
+
+.card-product-grid:hover {
+  box-shadow: 0 10px 15px rgba(75, 73, 73, 0.3);
+  transition: 0.3s;
 }
 </style>
 <div class="conta">
@@ -77,11 +112,11 @@
 <div class="row">
   <aside class="col-md-3">
 
-<div class="card">
+<div class="card" >
 	<article class="filter-group">
 		<header class="card-header">
 			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
-				<i class="icon-control fa fa-chevron-down"></i>
+				<i class="icon-control fa fa-chevron-down" style="color: #9C0646;"></i>
 				<h6 class="title">Categories</h6>
 			</a>
 		</header>
@@ -114,7 +149,7 @@
         {% if products %}
         {% for prod in products %}
         <div class="col-md-4">
-        <figure class="card card-product-grid cat" style="width: 18rem; border: none;">
+        <figure class="card card-product-grid cat" style="width: 18rem;">
           <div class="img-wrap">
             <img src="{{ prod.image.url }}" class="card-img" alt="...">
           </div>
@@ -124,9 +159,9 @@
             <div class="price-wrap mt-2">
               <p class="card-text"> Ksh {{ prod.price }}</p>
             </div>
-            <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
+            <a href="#" class="btn love"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
           </div>
-          <a href="#" class="btn btn-block " style="background-color: #9C0646;color: #fff;">Add to Cart<i class="uil uil-shopping-cart" style="font-size: x-large; margin-left: 10%;"></i></a>
+          <a href="#" class="btn btn-overlay " style="background-color: #9C0646;color: #fff;">Add to Cart<i class="uil uil-shopping-cart" style="font-size: x-large; margin-left: 10%;"></i></a>
         </figcaption>
         </figure>
       </div>

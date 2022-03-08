@@ -106,5 +106,7 @@ def shop(request, category_slug=None):
     }
     return render(request, 'all-temps/shop.html', context)
 
+def product_detail(request, category_slug, product_slug):
 
+    return render(request, 'all-temps/product.html', context)
 

@@ -100,11 +100,7 @@
 </div>
 <div class="container conn">
 <h4 style="color: #9C0646; text-align: center;">Trending</h4>
-<!-- <div class="btn-group" role="group" aria-label="Basic outlined example" style="margin-left: 30%;">
-  <a class="btn btn-outline-danger active" href="{% url 'shop' %}">All Products </a>
-  {% for category in links %}
-    <a   href="{{ category.get_url }}" class="btn btn-outline-danger " >{{ category.name }}</a>
-  {% endfor %} -->
+
   </div>
   <div class="cat1 ">
     <div class="row mt-4">
@@ -113,19 +109,6 @@
           <span class="mr-md-auto"><b>{{ product_count }}</b> Items Found</span>
         </div>
       </header>
-    {% for prod in products %}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-    <div class="col-md-6 col-md-6 col-lg-4" style="gap: 5px;">
-    <div class="card cat" style="width: 18rem; border: none;">
-      <img src="{{ prod.image.url }}" class="card-img" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{ prod.name }}</h5>
-        <p class="card-text"> Ksh {{ prod.price }}</p>
-        <a href="#" class="btn"><i class="uil uil-shopping-cart" style="font-size: xx-large;"></i></a>
-        <a href="#" class="btn"><i class="uil uil-heart" style="font-size: xx-large;color: #9C0646;"></i></a>
-      </div>
-    </div>
-  </div>
-      {% endfor %}
     </div>
   </div>
 </div>
