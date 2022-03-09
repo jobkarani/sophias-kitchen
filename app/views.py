@@ -113,17 +113,14 @@ def shop(request, category_slug=None):
     return render(request, 'all-temps/shop.html', context)
 
 def product_detail(request, category_slug, product_slug):
-    flavour = None
-    topping = None
+
     try:
         single_product = Product.objects.get(category__slug=category_slug,slug=product_slug)
-        product = Product.objects.all()
     except Exception as e:
         raise e
     
     context = {
         'single_product': single_product,
-        'product':product,
     }
     return render(request, 'all-temps/product.html',context)
 
@@ -155,8 +152,8 @@ def add_cart(request, product_id):
             cart = cart,
         )
         cart_item.save()
-    # return HttpResponse(cart_item.product)
-    # exit()
+    return HttpResponse(cart_item.product)
+    exit()
     return redirect('cart')
 
 def cart(request): 
