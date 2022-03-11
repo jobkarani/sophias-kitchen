@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .email import send_welcome_email
 from .forms import *
+from django.core.paginator import PageNotAnInteger,EmptyPage,Paginator
 
 # auth 
 
@@ -105,9 +106,12 @@ def shop(request, category_slug=None):
         product_count = products.count()
     else:
         products = Product.objects.all().filter(is_available=True)
+        paginator = Paginator(products, 6)
+        page = request.GET.get('page')
+        paged_product = paginator.get_page(page)
         product_count = products.count()
     context = {
-        'products': products,
+        'products': paged_product,
         'product_count':product_count,
     }
     return render(request, 'all-temps/shop.html', context)
