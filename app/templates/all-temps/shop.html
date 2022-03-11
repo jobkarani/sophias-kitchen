@@ -198,13 +198,19 @@
     </div>
 
     <nav class="mt-4" aria-label="page navigation sample">
+      {% if products.has_other_pages %}
       <ul class="pagination">
+        {% if products.has_previous %}
+        <li class="page-item"><a href="?page={{products.previous_page_number}}" class="page-link">Previous</a></li>
+        {% else %}
         <li class="page-item disabled"><a href="#" class="page-link">Previous</a></li>
+        {% endif %}
         <li class="page-item active"><a href="#" class="page-link">1</a></li>
         <li class="page-item"><a href="#" class="page-link">2</a></li>
         <li class="page-item"><a href="#" class="page-link">3</a></li>
         <li class="page-item"><a href="#" class="page-link">Next</a></li>
       </ul>
+      {% endif %}
     </nav>
 
   </main>
