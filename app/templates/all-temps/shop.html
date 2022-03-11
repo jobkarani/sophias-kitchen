@@ -184,7 +184,8 @@
               <a href="{{ prod.get_url }}" class="btn love"><i class="uil uil-heart"
                   style="font-size: xx-large;color: #9C0646;"></i></a>
             </div>
-            <a href="{% url 'add_cart' prod.id %}" class="btn btn-overlay " style="background-color: #9C0646;color: #fff;">Add to Cart</i></a>
+            <a href="{{ prod.get_url }}" class="btn btn-overlay " style="background-color: #9C0646;color: #fff;">View
+              Product</i></a>
           </figcaption>
         </figure>
       </div>
