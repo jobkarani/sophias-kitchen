@@ -122,9 +122,13 @@
 </style>
 <div class="conta">
   <div class="moja">
-    <h1 style="font-size:400%; color: black;">Products</h1>
+    {% if 'search' in request.path %}
+      <h1 style="font-size:400%; color: black;">Search Results</h1>
+    {% else %}
+      <h1 style="font-size:400%; color: black;">Products</h1>
+    {% endif %}
   </div>
-  <img src="https://cdn.pixabay.com/photo/2019/02/25/17/36/mockup-4020150__340.jpg" alt=""
+  <img src="https://cdn.pixabay.com/photo/2019/11/17/18/01/donuts-4633040__340.jpg" alt=""
     style="background-repeat: no-repeat;background-size: cover;width: 100%;max-height: 60vh;">
 </div>
 <div class="row">

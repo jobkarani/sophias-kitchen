@@ -70,7 +70,7 @@
                 </div>
                 <div class="left">
                     <li>
-                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="/"><i class="uil uil-search"></i></a>
+                        <!-- <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="/shop/search/"><i class="uil uil-search"></i></a> -->
                     </li>
                     <li>
                         <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="/cart/"><i class="uil uil-shopping-cart"></i></a>
@@ -84,6 +84,17 @@
     </div>
 
     <!-- Adding a search form  -->
+    <div class="col-lg col-md-6 col-sm-12 col">
 
+        <form class="search" role="search" action="{% url 'search' %}" method="GET">
+    
+          <div class="input-group w-100 ">
+            <input type="text" class="form-control" placeholder="Search" style="width:60%" name="keyword">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
     <!-- search form end -->
 </nav>
