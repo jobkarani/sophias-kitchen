@@ -143,6 +143,10 @@ def _cart_id(request):
         return cart
 
 def add_cart(request, product_id):
+    flavour = request.GET['flavour']
+    toppings = request.GET['toppings']
+    size = request.GET['size']
+
     product = Product.objects.get(id = product_id) #get product
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request)) #get cart using cart_id present in the session
