@@ -49,15 +49,15 @@
               <div class="row">
                 <div class="item-option-select">
                   <h6>Choose Flavour</h6>
-                  <select name="flavour" class="form-control">
-                    <option value="CHOCOLATE FUDGE">CHOCOLATE FUDGE</option>
-                    <option value="RED VELVET">RED VELVET</option>
-                    <option value="VANILLA">VANILLA</option>
-                    <option value="GINGER">GINGER</option> 
+                  <select name="flavour" class="form-control" required>
+                    <option value="" disabled selected>choose flavour</option>
+                    {% for i in single_product.variation_set.all %}
+                    <option value="{{ i.variation_value }}">{{ i.variation_value }}</option>
+                    {% endfor %}
                   </select>
                 </div>
-              </div> <!-- row.// -->
-              <div class="row">
+              </div> 
+              <!-- <div class="row">
                 <div class="item-option-select">
                   <h6>Select Toppings</h6>
                   <select name="toppings" class="form-control">
@@ -78,7 +78,7 @@
                     <option value="3kgs">3kgs</option> 
                   </select>
                 </div>
-              </div> <!-- row.// -->
+              </div>  -->
               
               <hr>
               {% if single_product.stock <= 0 %}
