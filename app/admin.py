@@ -10,9 +10,14 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'stock','description','category', 'is_available')
     prepopulated_fields = {'slug': ('name',)}
 
+class VariationAdmin(admin.ModelAdmin):
+    list_display = ('product','variation_category','variation_value','is_active')
+    list_editable = ('is_active',)
+    list_filter = ('product','variation_category','variation_value')
+
 admin.site.register(Profile)
 admin.site.register(Product, ProductAdmin )
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Cart)
 admin.site.register(CartItem)
-admin.site.register(Variation)
+admin.site.register(Variation, VariationAdmin)
