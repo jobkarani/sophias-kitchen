@@ -143,9 +143,11 @@ def _cart_id(request):
         return cart
 
 def add_cart(request, product_id):
-    flavour = request.GET['flavour']
-    toppings = request.GET['toppings']
-    size = request.GET['size']
+    if request.method == 'POST':
+        flavour = request.POST['flavour']
+        topping = request.POST['topping']
+        size = request.POST['size']
+        print(flavour,topping,size)
 
     product = Product.objects.get(id = product_id) #get product
     try:

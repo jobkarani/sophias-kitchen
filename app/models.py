@@ -112,6 +112,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class VariationManager(models.Manager):
+    def flavours(self):
+        return super(VariationManager, self).filter(variation_category="flavour",is_active=True)
+
+    def toppings(self):
+        return super(VariationManager, self).filter(variation_category="toppings",is_active=True)
+
+    def sizes(self):
+        return super(VariationManager, self).filter(variation_category="size",is_active=True)
+
 variation_category_choice=(
     ('flavour', 'flavour'),
     ('toppings', 'toppings'),
@@ -124,6 +134,8 @@ class Variation(models.Model):
     variation_value = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     created_date = models.DateTimeField(auto_now=True)
+
+    objects = VariationManager()
 
     def __unicode__(self):
         return self.product
