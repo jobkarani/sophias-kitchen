@@ -1,4 +1,5 @@
 from multiprocessing import context
+from django.contrib import messages
 from django.db.models import Q
 from django.forms import SlugField
 
@@ -23,7 +24,8 @@ def create_profile(request):
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
-        return HttpResponseRedirect('/')
+            messages.success(request, 'Profile Succesfully Created')
+        return HttpResponseRedirect('create_profile')
 
     else:
         form = ProfileForm()
