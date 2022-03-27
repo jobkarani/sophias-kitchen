@@ -5,30 +5,45 @@
     }
     .center{
         position: relative;
-        left: 20%;
+        left: 10%;
         display: flex;
     } 
     .left{
         display: flex;
         align-items: baseline;
         position: relative;
-        left: 80%;
+        left: 60%;
     } 
     .end{
         display: flex;
         align-items: baseline;
         position: relative;
-        left: 80%; 
+        left: 60%; 
         margin-left: 5%;
-    }  
+    } 
+    .end a:hover{
+        -ms-transform: scale(1.5); 
+        -webkit-transform: scale(1.5); 
+        transform: scale(1.5); 
+        background: none;
+    }
+    .in{
+        margin-right: 4%;
+    }
+    .reg{
+        margin-left: 4%;
+    }
     .just{
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
     }
-    a {
+    .center  a {
         font-size: larger;
+    }
+    a {
+        font-size: large;
     }
     .center li{
         margin-left: 25%;
@@ -43,8 +58,8 @@
         margin-left: 15%;
     }
     .left li:hover{
-        -ms-transform: scale(1.5); /* IE 9 */
-        -webkit-transform: scale(1.5); /* Safari 3-8 */
+        -ms-transform: scale(1.5); 
+        -webkit-transform: scale(1.5); 
         transform: scale(1.5); 
     }
 </style>
@@ -97,9 +112,10 @@
                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/logout">Logout</a>
+                        <a class="dropdown-item" href="{% url 'logout' %}?next=/">Logout</a>
                         {% else %}
-                        <a class='dropdown-item' href="/login">Login</a>
+                        <a class='nav-link in' style="color: #9C0646;font-size: large;" href="{% url 'login' %}">Login</a> ||
+                        <a class='nav-link reg' style="color: #9C0646;font-size: large;" href="/accounts/register">Register</a>
                       </div>
                       </li>
                     </ul>
