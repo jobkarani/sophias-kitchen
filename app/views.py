@@ -2,7 +2,6 @@ from multiprocessing import context
 from django.contrib import messages
 from django.db.models import Q
 from django.forms import SlugField
-from urllib3 import Retry
 
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -258,7 +257,7 @@ def search(request):
         'product_count':product_count,
     }
     return render(request, 'all-temps/shop.html', ctx)
-
+@login_required(login_url="/accounts/login/")
 def checkout(request, total=0, quantity=0, cart_items=None):
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
