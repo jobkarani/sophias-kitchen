@@ -2,6 +2,7 @@ from multiprocessing import context
 from django.contrib import messages
 from django.db.models import Q
 from django.forms import SlugField
+from urllib3 import Retry
 
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -257,3 +258,19 @@ def search(request):
         'product_count':product_count,
     }
     return render(request, 'all-temps/shop.html', ctx)
+
+def checkout(request, total=0, quantity=0, cart_items=None):
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart,is_active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price*cart_item.quantity)
+    except ObjectDoesNotExist:
+        pass
+
+    ctx = {
+        'total':total,
+        'quantity':quantity,
+        'cart_items':cart_items
+    }
+    return render(request, 'all-temps/checkout.html',ctx)

@@ -1,157 +1,109 @@
-{% extends 'all-temps/base.html' %} {% load static %} {% block content %}
-<br><br><br><br><br>
+{% extends 'all-temps/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section class="section-content padding-y bg" >
+<div class="container" style="margin-top: 10%;">
 
 <div class="row">
-    <div class="col-lg-6">
-        <div class="box-element" id="form-wrapper">
-            <form id="form">
-                <div id="user-info">
-                    <div class="form-field">
-                        <input required class="form-control" type="text" name="name" placeholder="Name..">
-                    </div>
-                    <div class="form-field">
-                        <input required class="form-control" type="email" name="email" placeholder="Email..">
-                    </div>
-                </div>
-
-                <div id="shipping-info">
-                    <hr>
-                    <p>Shipping Information:</p>
-                    <hr>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="address" placeholder="Address..">
-                    </div>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="city" placeholder="City..">
-                    </div>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="state" placeholder="District..">
-                    </div>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="zipcode" placeholder="Area Code..">
-                    </div>
-                    <div class="form-field">
-                        <input class="form-control" type="text" name="zipcode" placeholder="Phone..">
-                    </div>
-                </div>
-
-                <hr>
-                <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
-            </form>
+	<aside class="col-lg-6">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title mb-4">Billing Address</h4>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">First Name</label>
+          <input type="text" name="first_name" class="form-control" required>
         </div>
-        <br>
-
-        <div class="box-element hidden" id="payment-info">
-            <small>Mpesa Options</small>
-            <button id="make-payment">Make Payment</button>
+        <div class="col form-group">
+          <label for="">Last Name</label>
+          <input type="text" name="last_name" class="form-control" required>
         </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="box-element">
-            <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
-            <hr>
-            <h3>Ordar Summary</h3>
-            <hr> {% for item in items %}
-            <div class="cart-row">
-                <div style="flex:2"><img class="row-image" src="{{ item.product.imageURL }}"></div>
-                <div style="flex:2">
-                    <p>{{ item.product.name }}</p>
-                </div>
-                <div style="flex:1">
-                    <p>Ksh {{ item.product.price }}</p>
-                </div>
-                <div style="flex:1">
-                    <p>x{{ item.quantity }}</p>
-                </div>
-            </div>
-            {% endfor %}
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Email</label>
+          <input type="email" name="email" class="form-control" required>
         </div>
-    </div>
-</div>
-<br><br><br>
+        <div class="col form-group">
+          <label for="">Phone Number</label>
+          <input type="text" name="phone" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">City</label>
+          <input type="text" name="city" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">County</label>
+          <input type="text" name="county" class="form-control" required>
+        </div>
+        
+        <div class="form-row">
+          <label for="">Order Note</label>
+          <textarea name="order_note" rows="2" class="form-control"></textarea>
+        </div>
+   </div>
+</div> 
 
-<script type="text/javascript">
-    var shipping = '{{ order.shipping }}'
-    var total = '{{ order.get_cart_total }}'
+	</aside> 
+	<aside class="col-lg-6">
 
-    if (shipping == 'False') {
-        document.getElementById('shipping-info').innerHTML = ''
-    }
+		<div class="card">
+		<div class="card-body">
+      <table class="table table-borderless table-shopping-cart">
+      <thead class="text-muted">
+      <tr class="small text-uppercase">
+        <th scope="col">Product</th>
+        <th scope="col" width="120">Quantity</th>
+        <th scope="col" width="120">Price</th>
 
-    if (user != 'AnonymousUser') {
-        document.getElementById('user-info').innerHTML = ''
-    }
+      </tr>
+      </thead>
+      <tbody>
 
-    if (shipping == 'False' && user != 'AnonymousUser') {
-        document.getElementById('form-wrapper').classList.add("hidden");
-        document.getElementById('payment-info').classList.remove("hidden");
-    }
-
-    var form = document.getElementById('form')
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault()
-        console.log('Form Submitted...')
-        document.getElementById('form-button').classList.add("hidden");
-        document.getElementById('payment-info').classList.remove("hidden");
-    })
-
-    document.getElementById('make-payment').addEventListener('click', function(e) {
-        submitFormData()
-    })
-
-    function submitFormData() {
-        console.log("Payment button clicked...")
-
-        var userFormData = {
-            'name': null,
-            'email': null,
-            'total': total,
-        }
-
-        var shippingInfo = {
-            'address': null,
-            'city': null,
-            'state': null,
-            'zipcode': null,
-        }
-
-        if (shipping != 'False') {
-            shippingInfo.address = form.address.value
-            shippingInfo.city = form.city.value
-            shippingInfo.state = form.state.value
-            shippingInfo.zipcode = form.zipcode.value
-        }
-
-        if (user == 'AnonymousUser') {
-            userFormData.name = form.name.value
-            userFormData.email = form.email.value
-        }
-
-        var url = '/process_order/'
-
-        fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken,
-                },
-                body: JSON.stringify({
-                    'form': userFormData,
-                    'shipping': shippingInfo
-                })
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('Success:', data);
-                alert('Transaction completed');
-
-                cart = {}
-                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
-
-                window.location.href = "{% url 'shop' %}"
-            })
-    }
-</script>
-
-{% endblock content %}
+      {% for cart_item in cart_items %}
+      <tr>
+      	<td>
+      		<figure class="itemside align-items-center">
+      			<div class="aside"><img src="{{ cart_item.product.image.url }}" class="img-sm" style="width: 30%;"></div>
+      			<figcaption class="info">
+      				<a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.name }}</a>
+      				<p class="text-muted small">
+      					{% if cart_item.variations.all %}
+      						{% for item in cart_item.variations.all %}
+      							{{ item.variation_category | capfirst }} : {{ item.variation_value | capfirst }} <br>
+      						{% endfor %}
+      					{% endif %}
+      				</p>
+      			</figcaption>
+      		</figure>
+      	</td>
+      	<td>
+      				<label for="">{{cart_item.quantity}}</label>
+      	</td>
+      	<td>
+      		<div class="price-wrap">
+      			<var class="price">Ksh {{ cart_item.sub_total }}</var>
+      			<small class="text-muted"> Ksh {{ cart_item.product.price }} each </small>
+      		</div> 
+      	</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+      <button type="submit" name="submit" class="btn btn-primary btn-block">Place Order</button>
+			<a href="{% url 'shop' %}" class="btn btn-light btn-block">Continue Shopping</a>
+      </form>
+		</div> 
+		</div> 
+</aside> 
+</div> 
+</div> 
+</section>
+{% endblock %}
