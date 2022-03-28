@@ -1,3 +1,4 @@
+import datetime
 from multiprocessing import context
 from django.contrib import messages
 from django.db.models import Q
@@ -56,6 +57,7 @@ def profile(request):
 
 @login_required(login_url="/accounts/login/")
 def update_profile(request, id):
+    # current_user = request.user
     user = User.objects.get(id=id)
     profile = Profile.objects.get(user=user)
     form = UpdateProfileForm(instance=profile)
@@ -232,18 +234,39 @@ def remove_cart_item(request, product_id, cart_item_id ):
 
 def cart(request, total=0, quantity=0, cart_items=None): 
     try:
-        cart = Cart.objects.get(cart_id=_cart_id(request))
-        cart_items = CartItem.objects.filter(cart=cart,is_active=True)
+        sub_total = 0
+        if request.user.is_authenticated:
+            cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+        else:
+            cart = Cart.objects.get(cart_id=_cart_id(request))
+            cart_items = CartItem.objects.filter(cart=cart, is_active=True)
         for cart_item in cart_items:
-            total += (cart_item.product.price*cart_item.quantity)
+            total += (cart_item.product.price * cart_item.quantity)
+            quantity += cart_item.quantity
+        sub_total = total 
     except ObjectDoesNotExist:
-        pass
+        pass #just ignore
 
     ctx = {
-        'total':total,
-        'quantity':quantity,
-        'cart_items':cart_items
+        'total': total,
+        'quantity': quantity,
+        'cart_items': cart_items,
+        'sub_total': sub_total,
     }
+
+    # try:
+    #     cart = Cart.objects.get(cart_id=_cart_id(request))
+    #     cart_items = CartItem.objects.filter(cart=cart,is_active=True)
+    #     for cart_item in cart_items:
+    #         total += (cart_item.product.price*cart_item.quantity)
+    # except ObjectDoesNotExist:
+    #     pass
+
+    # ctx = {
+    #     'total':total,
+    #     'quantity':quantity,
+    #     'cart_items':cart_items
+    # }
     return render(request, 'all-temps/cart.html', ctx)
 
 def search(request):
@@ -274,13 +297,49 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     }
     return render(request, 'all-temps/checkout.html',ctx)
 
-def place_order(request):
+def place_order(request,total=0, quantity=0,):
     current_user = request.user
 
-    cart_item = CartItem.objects.filter(user=current_user)
-    cart_count = cart_item.count()
+    cart_items = CartItem.objects.filter(user=current_user)
+    cart_count = cart_items.count()
     if cart_count <= 0:
         return render('shop')
 
+    sub_total = 0
+    for cart_item in cart_item:
+        total += (cart_item.product.price*cart_item.quantity)
+        quantity += cart_item.quantity
+    sub_total = total
+
+
     if request.method == 'POST':
         form = OrderForm(request.POST)
+        if form.is_valid():
+            # store all billing info 
+            data = Order()
+            data.first_name = form.cleaned_data('first_name')
+            data.last_name = form.cleaned_data('last_name')
+            data.phone = form.cleaned_data('phone')
+            data.email = form.cleaned_data('email')
+            data.county = form.cleaned_data('county')
+            data.town = form.cleaned_data('town')
+            data.order_note = form.cleaned_data('order_note')
+            data.order_total = sub_total
+            data.ip = request.META.get('REMOTE_ADDR')
+            data.save()
+
+            # generate order number 
+            yr = int(datetime.date.today().strftime('%Y'))
+            dt = int(datetime.date.today().strftime('%d'))
+            mt = int(datetime.date.today().strftime('%m'))
+            d = datetime.date(yr,mt,dt)
+            current_date = d.strftime("%Y%m%d") #20210305
+            order_number = current_date + str(data.id)
+            data.order_number = order_number
+            data.save()
+
+            return redirect('checkout')
+
+    else:
+        return redirect('checkout')
+

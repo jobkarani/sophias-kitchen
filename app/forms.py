@@ -17,4 +17,4 @@ class UpdateProfileForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['first_name','last_name','phone','email','county','city','order_note']
+        fields = ['first_name','last_name','phone','email','county','town','order_note']

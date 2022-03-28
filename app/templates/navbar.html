@@ -157,7 +157,7 @@
                         <!-- <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="/shop/search/"><i class="uil uil-search"></i></a> -->
                     </li>
                     <li>
-                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">3</span></a>
+                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count }}</span></a>
                     </li>
                 </div>
                 <div class="col-sm-6 col-md-6 end" >

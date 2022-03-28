@@ -29,7 +29,7 @@
     <div class="card">
         <div class="row">
             <div class="col-md-6" style="width: 100%; padding:10%;">
-                {% include 'alerts.html'%}
+                
                 <div class="input">
                     <div class="text-center">
                         <div class="title">Create a profile to start using Sophia's products.</div>
@@ -41,8 +41,12 @@
 
                     <form action="{%url 'create_profile'%}" method="post" enctype="multipart/form-data">
                         {%csrf_token%} {% bootstrap_form form%}
-                        <input type="submit" class="btn btn-dark" value="Create Profile" />
+                        <input type="submit" class="btn btn-dark" value="Create Profile"/>
                     </form>
+                    {% include 'alerts.html'%}
+                    <div class="guide">
+                        
+                    </div>
                 </div>
             </div>
         </div>
