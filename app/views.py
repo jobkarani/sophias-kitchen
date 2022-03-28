@@ -273,3 +273,14 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         'cart_items':cart_items
     }
     return render(request, 'all-temps/checkout.html',ctx)
+
+def place_order(request):
+    current_user = request.user
+
+    cart_item = CartItem.objects.filter(user=current_user)
+    cart_count = cart_item.count()
+    if cart_count <= 0:
+        return render('shop')
+
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
