@@ -19,4 +19,5 @@ urlpatterns = [
     path('aboutus/', views.About, name='About'),
     path('shop/search/', views.search, name='search'),
     path('place_order/', views.place_order, name='place_order'),
+    path('payments/', views.payments, name='payments'),
 ]

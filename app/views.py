@@ -323,17 +323,18 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     }
     return render(request, 'all-temps/checkout.html',ctx)
 
+def payments(request):
+    
+    return render(request, 'all-temps/payments.html')
 
 @login_required(login_url="/accounts/login/")
 def place_order(request,total=0, quantity=0,):
     current_user = request.user
 
     cart_items = CartItem.objects.filter(user=current_user)
-    # print(cart_items)
     cart_count = cart_items.count()
     if cart_count <= 0:
         return redirect('shop')
-    print(cart_items)
 
     
     sub_total = 0
@@ -348,6 +349,7 @@ def place_order(request,total=0, quantity=0,):
         if form.is_valid():
             # store all billing info 
             data = Order()
+            data.user = current_user
             data.first_name = form.cleaned_data['first_name']
             data.last_name = form.cleaned_data['last_name']
             data.phone = form.cleaned_data['phone']
@@ -368,12 +370,9 @@ def place_order(request,total=0, quantity=0,):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
-            print(data)
-
 
             return redirect('checkout')
-        else:
-            return HttpResponse('okay')
+        
 
     else:
         return redirect('checkout')

@@ -1,0 +1,52 @@
+{% extends 'all-temps/base.html' %} {% load static %} {% block content %}
+
+<style>
+	section {
+		margin-top: 10%;
+	}
+</style>
+<section class="section-content padding-y bg">
+	<div class="container">
+		
+		<div class="row">
+			<aside class="col-lg-8">
+				<div class="card">
+                    <h5 class="card-header">Billing Address</h5>
+                    <div class="card-body">
+                       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <h5 class="card-header">Payment Method</h5>
+                    <div class="card-body">
+                       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <h5 class="card-header">Review Products</h5>
+                    <div class="card-body">
+                       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                  </div>
+			</aside>
+			<aside class="col-lg-4">
+				<div class="card">
+					<div class="card-body">
+						<dl class="dlist-align">
+							<dt>Total price:</dt>
+							<dd class="text-right">Ksh {{ total }}</dd>
+						</dl>
+
+						<hr />
+						<p class="text-center mb-3">
+							<img src="" height="26" />
+						</p>
+						<a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Checkout </a>
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+</section>
+
+{% endblock %}
