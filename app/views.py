@@ -1,5 +1,6 @@
 import datetime
 from multiprocessing import context
+from re import sub
 from django.contrib import messages
 from django.db.models import Q
 from django.forms import SlugField
@@ -208,7 +209,7 @@ def add_cart(request, product_id):
             item.save()
         else:
             # add a new cartitem
-            item = CartItem.objects.create(product=product, quantity=1, cart=cart)
+            item = CartItem.objects.create(product=product, quantity=1, cart=cart, user=request.user)
             if len(product_variation) > 0:
                 item.variations.clear()
                 item.variations.add(*product_variation)
@@ -218,6 +219,7 @@ def add_cart(request, product_id):
             product = product,
             quantity = 1,
             cart = cart,
+            user=request.user,
         )
         if len(product_variation) > 0:
             cart_item.variations.clear()
@@ -327,16 +329,19 @@ def place_order(request,total=0, quantity=0,):
     current_user = request.user
 
     cart_items = CartItem.objects.filter(user=current_user)
+    # print(cart_items)
     cart_count = cart_items.count()
     if cart_count <= 0:
-        return render('shop')
+        return redirect('shop')
+    print(cart_items)
 
+    
     sub_total = 0
-    for cart_item in cart_item:
+    for cart_item in cart_items:
         total += (cart_item.product.price*cart_item.quantity)
         quantity += cart_item.quantity
     sub_total = total
-
+    print(sub_total)
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
@@ -363,8 +368,12 @@ def place_order(request,total=0, quantity=0,):
             order_number = current_date + str(data.id)
             data.order_number = order_number
             data.save()
+            print(data)
+
 
             return redirect('checkout')
+        else:
+            return HttpResponse('okay')
 
     else:
         return redirect('checkout')
