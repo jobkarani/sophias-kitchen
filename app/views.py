@@ -371,7 +371,13 @@ def place_order(request,total=0, quantity=0,):
             data.order_number = order_number
             data.save()
 
-            return redirect('checkout')
+            order = Order.objects.get(user=current_user,is_ordered=False,order_number=order_number)
+            ctx = {
+                'order':order,
+                'cart_items':cart_items,
+                'sub_total':sub_total,
+            }
+            return render(request, 'all-temps/payments.html',ctx)
         
 
     else:
