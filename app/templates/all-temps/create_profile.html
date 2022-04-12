@@ -1,8 +1,10 @@
-{% extends 'all-temps/base.html'%} {% load static %} {% load bootstrap5 %}
+{%extends "registration/base.html" %}
+{% load static %}
+{% load bootstrap5 %}
 
 {% block content %}
 <br><br><br> <br>
-<style>
+<!-- <style>
     .card {
         padding: 4%;
         border-radius: 10%;
@@ -23,9 +25,9 @@
         padding-bottom: 10%;
         border-bottom: .5px solid black;
     }
-</style>
+</style> -->
 
-<div class="container" style="align-items:center; width:60%">
+<!-- <div class="container" style="align-items:center; width:60%">
     <div class="card">
         <div class="row">
             <div class="col-md-6" style="width: 100%; padding:10%;">
@@ -51,5 +53,20 @@
             </div>
         </div>
     </div>
+</div> -->
+
+<div class="container-full container">
+    <div class="row">
+        <h1 class="text-center">Welcome To <span>Sophias Kitchen</span></h1>
+        <h4 class="text-center">Lets start by <span>CREATING YOUR PROFILE</span></h4>
+        <br><br>
+
+        <div class="">
+            <form action="{%url 'create_profile'%}" method="post" enctype="multipart/form-data" class="create-profile">
+                {%csrf_token%} {% bootstrap_form form%}
+                <button class="btn" type="submit" style="background: #9C0646; color: #fff;" >Create Profile</button>
+            </form>
+            {% include 'alerts.html'%}
+        </div>
 </div>
 {% endblock %}

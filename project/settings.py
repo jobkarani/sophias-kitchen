@@ -45,6 +45,7 @@ LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +55,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'bootstrap5',
     'cloudinary',
-    'crispy_forms',
+    
     'tinymce',
 ]
 
@@ -97,8 +98,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'sophia',
-        'USER': 'code_monkey',
-        'PASSWORD': 'gerrit',
+        'USER': 'derrick',
+        'PASSWORD': 'd12345',
     }
 }
 
