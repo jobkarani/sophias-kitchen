@@ -71,3 +71,17 @@
 //     console.log(display);
 //     document.querySelector('body').style.backgroundColor = '#60b347';
 //   })
+
+$(function() {
+	'use strict';
+	
+  $('.form-control').on('input', function() {
+	  var $field = $(this).closest('.form-group');
+	  if (this.value) {
+	    $field.addClass('field--not-empty');
+	  } else {
+	    $field.removeClass('field--not-empty');
+	  }
+	});
+
+});
