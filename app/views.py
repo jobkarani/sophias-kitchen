@@ -1,5 +1,6 @@
 import datetime
 from multiprocessing import context
+from re import sub
 from django.contrib import messages
 from django.db.models import Q
 from django.forms import SlugField
@@ -26,11 +27,13 @@ def create_profile(request):
             profile.user = current_user
             profile.save()
             messages.success(request, 'Profile Succesfully Created')
-        return HttpResponseRedirect('create_profile')
+        return HttpResponseRedirect('/')
 
     else:
         form = ProfileForm()
     return render(request, 'all-temps/create_profile.html', {"form": form, "title": title})
+
+
 
 
 @login_required(login_url="/accounts/login/")
@@ -56,6 +59,22 @@ def profile(request):
 
 
 @login_required(login_url="/accounts/login/")
+def create_profile(request):
+    current_user = request.user
+    title = "Create Profile"
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return HttpResponseRedirect('/')
+
+    else:
+        form = ProfileForm()
+    return render(request, 'all-temps/create_profile.html', {"form": form, "title": title})
+
+
 def update_profile(request, id):
     # current_user = request.user
     user = User.objects.get(id=id)
@@ -146,6 +165,7 @@ def _cart_id(request):
         cart = request.session.create()
         return cart
 
+@login_required(login_url="/accounts/login/")
 def add_cart(request, product_id):
     product = Product.objects.get(id = product_id) 
     product_variation = []
@@ -189,7 +209,7 @@ def add_cart(request, product_id):
             item.save()
         else:
             # add a new cartitem
-            item = CartItem.objects.create(product=product, quantity=1, cart=cart)
+            item = CartItem.objects.create(product=product, quantity=1, cart=cart, user=request.user)
             if len(product_variation) > 0:
                 item.variations.clear()
                 item.variations.add(*product_variation)
@@ -199,6 +219,7 @@ def add_cart(request, product_id):
             product = product,
             quantity = 1,
             cart = cart,
+            user=request.user,
         )
         if len(product_variation) > 0:
             cart_item.variations.clear()
@@ -207,6 +228,7 @@ def add_cart(request, product_id):
     
     return redirect('cart')
 
+@login_required(login_url="/accounts/login/")
 def remove_cart(request, product_id,cart_item_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -223,6 +245,7 @@ def remove_cart(request, product_id,cart_item_id):
     
     return redirect('cart')
 
+@login_required(login_url="/accounts/login/")
 def remove_cart_item(request, product_id, cart_item_id ):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     product = get_object_or_404(Product, id=product_id)
@@ -232,6 +255,7 @@ def remove_cart_item(request, product_id, cart_item_id ):
     cart_item.delete()
     return redirect('cart')
 
+@login_required(login_url="/accounts/login/")
 def cart(request, total=0, quantity=0, cart_items=None): 
     try:
         sub_total = 0
@@ -254,19 +278,19 @@ def cart(request, total=0, quantity=0, cart_items=None):
         'sub_total': sub_total,
     }
 
-    # try:
-    #     cart = Cart.objects.get(cart_id=_cart_id(request))
-    #     cart_items = CartItem.objects.filter(cart=cart,is_active=True)
-    #     for cart_item in cart_items:
-    #         total += (cart_item.product.price*cart_item.quantity)
-    # except ObjectDoesNotExist:
-    #     pass
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        cart_items = CartItem.objects.filter(cart=cart,is_active=True)
+        for cart_item in cart_items:
+            total += (cart_item.product.price*cart_item.quantity)
+    except ObjectDoesNotExist:
+        pass
 
-    # ctx = {
-    #     'total':total,
-    #     'quantity':quantity,
-    #     'cart_items':cart_items
-    # }
+    ctx = {
+        'total':total,
+        'quantity':quantity,
+        'cart_items':cart_items
+    }
     return render(request, 'all-temps/cart.html', ctx)
 
 def search(request):
@@ -280,6 +304,8 @@ def search(request):
         'product_count':product_count,
     }
     return render(request, 'all-temps/shop.html', ctx)
+
+
 @login_required(login_url="/accounts/login/")
 def checkout(request, total=0, quantity=0, cart_items=None):
     try:
@@ -297,33 +323,40 @@ def checkout(request, total=0, quantity=0, cart_items=None):
     }
     return render(request, 'all-temps/checkout.html',ctx)
 
+def payments(request):
+    
+    return render(request, 'all-temps/payments.html')
+
+@login_required(login_url="/accounts/login/")
 def place_order(request,total=0, quantity=0,):
     current_user = request.user
 
     cart_items = CartItem.objects.filter(user=current_user)
     cart_count = cart_items.count()
     if cart_count <= 0:
-        return render('shop')
+        return redirect('shop')
 
+    
     sub_total = 0
-    for cart_item in cart_item:
+    for cart_item in cart_items:
         total += (cart_item.product.price*cart_item.quantity)
         quantity += cart_item.quantity
     sub_total = total
-
+    print(sub_total)
 
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             # store all billing info 
             data = Order()
-            data.first_name = form.cleaned_data('first_name')
-            data.last_name = form.cleaned_data('last_name')
-            data.phone = form.cleaned_data('phone')
-            data.email = form.cleaned_data('email')
-            data.county = form.cleaned_data('county')
-            data.town = form.cleaned_data('town')
-            data.order_note = form.cleaned_data('order_note')
+            data.user = current_user
+            data.first_name = form.cleaned_data['first_name']
+            data.last_name = form.cleaned_data['last_name']
+            data.phone = form.cleaned_data['phone']
+            data.email = form.cleaned_data['email']
+            data.county = form.cleaned_data['county']
+            data.town = form.cleaned_data['town']
+            data.order_note = form.cleaned_data['order_note']
             data.order_total = sub_total
             data.ip = request.META.get('REMOTE_ADDR')
             data.save()
@@ -338,7 +371,14 @@ def place_order(request,total=0, quantity=0,):
             data.order_number = order_number
             data.save()
 
-            return redirect('checkout')
+            order = Order.objects.get(user=current_user,is_ordered=False,order_number=order_number)
+            ctx = {
+                'order':order,
+                'cart_items':cart_items,
+                'sub_total':sub_total,
+            }
+            return render(request, 'all-temps/payments.html',ctx)
+        
 
     else:
         return redirect('checkout')

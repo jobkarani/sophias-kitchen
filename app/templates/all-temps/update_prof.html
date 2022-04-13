@@ -1,12 +1,24 @@
 {% extends 'all-temps/base.html' %}
 {% load bootstrap5 %}
 {% block content %}
+<style>
+    .mt{
+        margin-top: 10%;
+    }
+    .ct{
+        background-color: #9C0646;
+        width: 40%;
+        padding-left: 10%;
+        padding-top: 3%;
+        padding-bottom: 3%;
+        margin-left: 30%;
+    }
+</style>
 <!-- content -->
-<div class="container">
-    <div class=" mt-4">
+<div class="container mt">
         <div class="form">
             <h4 class="text-center">Update profile</h4>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" class="ct" enctype="multipart/form-data">
                 {% load crispy_forms_tags %}
                 {{ form | crispy }}
                 {% csrf_token %}
@@ -15,7 +27,6 @@
                 </div>
             </form>
         </div>
-    </div>
 </div>
 
 {% endblock%}

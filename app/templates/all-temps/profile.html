@@ -26,28 +26,22 @@
                         {% endif %}
                         <div class="card-body text-center">
                             <h4 class="card-text">
-                                {{ user.first_name }} {{ user.last_name }}
+                                {{ user.first_name }} 
                             </h4>
                             <p><span style="font: weight 900px; font-size:larger;">Username: </span> {{ user.username }}
                             </p>
                             <p>
 
-                                {% if profile.contact %}
+                                {% if profile.phone_number %}
                             <p> <span style="font: weight 900px; font-size:larger;"> Phone Number:
-                                </span>{{profile.contact}}</p>
+                                </span>{{profile.phone_number}}</p>
                             {% else %}
                             <span class="badge rounded-pill bg-info text-white">No contact</span>
                             {% endif %}
                             </p>
-                            <p>
-                                {% if profile.bio %}
-                            <p><span style="font: weight 900px; font-size:larger;"> Bio: </span>{{ profile.bio }}</p>
-                            {% else %}
-                            <span class="text-danger">No about me</span>
-                            {% endif %}
-                            </p>
+                            
                             <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
-                                    {{ user.created_on|date }} </span></h6>
+                                    {{ user.date_joined|date }} </span></h6>
                         </div>
                     </div>
                     <br>
