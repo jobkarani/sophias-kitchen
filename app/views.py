@@ -433,7 +433,6 @@ def userPayment(request):
             # messages.success(
             # request, 'Your Payment has been made successfully')
             user = User.objects.get(id=current_user.id)
-            # user.is_verified = True
             user.save()
             # time.sleep(10)
             return redirect('checkout')
