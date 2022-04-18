@@ -221,7 +221,7 @@ class OrderProduct(models.Model):
     def __str__(self):
         return self.product.name
 
-class Payment(models.Model):
+class Pay(models.Model):
     first_name = models.CharField(max_length=144, null=True, blank=True)
     last_name = models.CharField(max_length=144, null=True, blank=True)
     contact = models.CharField(max_length=30)

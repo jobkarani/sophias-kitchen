@@ -25,5 +25,5 @@ class PaymentForm(forms.ModelForm):
         self.fields['contact'].required = True
         
     class Meta:
-        model = Payment
+        model = Pay
         fields = ['first_name', 'last_name', 'contact']
