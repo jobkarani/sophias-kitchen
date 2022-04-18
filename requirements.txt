@@ -17,6 +17,7 @@ djangorestframework==3.12.4
 django-tinymce==3.4.0
 gunicorn==20.1.0
 idna==3.3
+python-flutterwave==0.5.9
 importlib-metadata==3.10.1
 Pillow==8.3.2
 psycopg2==2.8.6

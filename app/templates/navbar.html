@@ -156,9 +156,15 @@
                     <!-- <li>
                         <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="/shop/search/"><i class="uil uil-search"></i></a>
                     </li> -->
+                    {% if user.is_authenticated %}
                     <li>
-                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_count }}</span></a>
+                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_items.cart_count }}</span></a>
                     </li>
+                    {% else %}
+                    <li>
+                        <a class="nav-link " aria-current="page" style="color: #9C0646;font-size: xx-large;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i> </a>
+                    </li>
+                    {% endif %}
                 </div>
                 <div class="col-sm-6 col-md-6 end" >
                     {% if user.is_authenticated %}

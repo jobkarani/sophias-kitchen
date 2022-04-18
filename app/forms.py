@@ -18,3 +18,12 @@ class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
         fields = ['first_name','last_name','phone','email','county','town','order_note']
+
+class PaymentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['phone'].required = True
+        
+    class Meta:
+        model = Pay
+        fields = ['first_name', 'last_name', 'phone']
