@@ -384,7 +384,7 @@ def place_order(request,total=0, quantity=0,):
                 'cart_items':cart_items,
                 'sub_total':sub_total,
             }
-            return render(request, 'all-temps/payments.html',ctx)
+            return render(request, 'all-temps/pay.html',ctx)
         
 
     else:
