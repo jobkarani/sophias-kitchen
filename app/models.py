@@ -224,7 +224,7 @@ class OrderProduct(models.Model):
 class Pay(models.Model):
     first_name = models.CharField(max_length=144, null=True, blank=True)
     last_name = models.CharField(max_length=144, null=True, blank=True)
-    contact = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30)
 
 
 class MpesaPayment(models.Model):
@@ -233,7 +233,7 @@ class MpesaPayment(models.Model):
     type = models.TextField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    contact = models.TextField()
+    phone = models.TextField()
 
     class Meta:
         verbose_name = "Mpesa Payment"

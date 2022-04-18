@@ -22,8 +22,8 @@ class OrderForm(forms.ModelForm):
 class PaymentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['contact'].required = True
+        self.fields['phone'].required = True
         
     class Meta:
         model = Pay
-        fields = ['first_name', 'last_name', 'contact']
+        fields = ['first_name', 'last_name', 'phone']
