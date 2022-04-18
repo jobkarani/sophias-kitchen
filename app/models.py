@@ -73,6 +73,9 @@ class Profile(models.Model):
     phone = models.CharField(max_length=100)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    def __str___(self):
+        return self.phone
+
     def __str__(self):
         return self.user.username
 
