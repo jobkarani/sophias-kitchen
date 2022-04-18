@@ -1,5 +1,6 @@
 {% extends 'all-temps/base.html' %}  {% block content %}
-<div class="container">
+<br><br><br>
+<div class="container mt-5">
     <div class="card">
         <div class="card-body">
             <div class="list-align">
@@ -8,9 +9,8 @@
                       <form class="forms card" action="{%url 'userPayment' %}" method="POST" enctype="multipart/form-data" style=" -webkit-box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);
                       box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.2);">
                         <div class="card-header" style="background-color: #F3F9FF;">
-                          <h4 class="text-dark">Get verified and enjoy our service,pay Ksh 3000 only using the form below to get
-                            started</h4>
-                          <p class="text-center">Note: Phone number format is 254725470732</p>
+                          <h4 class="text-dark text-center">Make your payment of Ksh {{ sub_total }} using the form below.</h4>
+                          <p class="text-center">Note: Phone number format is 0725******</p>
                         </div>
               
                         <fieldset class="form-group p-3">

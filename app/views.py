@@ -384,7 +384,7 @@ def place_order(request,total=0, quantity=0,):
                 'cart_items':cart_items,
                 'sub_total':sub_total,
             }
-            return render(request, 'all-temps/pay.html',ctx)
+            return render(request, 'all-temps/payments.html',ctx)
         
 
     else:
@@ -393,6 +393,15 @@ def place_order(request,total=0, quantity=0,):
 @login_required
 def userPayment(request):
     current_user = request.user
+
+    cart_items = CartItem.objects.filter(user=current_user)
+    total = 0
+    quantity = 0
+    sub_total = 0
+    for cart_item in cart_items:
+        total += (cart_item.product.price*cart_item.quantity)
+        quantity += cart_item.quantity
+    sub_total = total
     if request.method == 'POST':
         mpesa_form = PaymentForm(
             request.POST, request.FILES, instance=request.user)
@@ -432,5 +441,7 @@ def userPayment(request):
         mpesa_form = PaymentForm(instance=request.user)
     context = {
         'mpesa_form': mpesa_form,
+        'cart_items':cart_items,
+        'sub_total':sub_total,
     }
-    return render(request, 'all-temps/paymentform.html', context)
+    return render(request, 'all-temps/pay.html', context)
