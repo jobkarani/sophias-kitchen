@@ -420,9 +420,9 @@ def userPayment(request):
                 "Timestamp": LipaNaMpesaPassword().payment_time,
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": "1",
-                "PartyA": request.POST.get('phone'),
+                "PartyA": phoneSanitize(request.POST.get('phone')),
                 "PartyB": LipaNaMpesaPassword().BusinessShortCode,
-                "PhoneNumber": request.POST.get('phone'),
+                "PhoneNumber": phoneSanitize(request.POST.get('phone')),
                 # "CallBackURL": "https://mpesa-api-python.herokuapp.com/api/v1/mpesa/callback/",
                 "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
                 "AccountReference": "Sophieskitchen",
@@ -450,19 +450,17 @@ def userPayment(request):
     return render(request, 'all-temps/pay.html', context)
 
 
-def phoneSanitize(request):
-    current_user = request.user
-    phone = Profile.objects.filter(phone=phone, user = current_user)
-
-    if phone.startswith(0):
-        print(phone.replace('0','254'))
-    elif phone.startswith(+254):
-        print(phone.replace('+254','254'))
-    elif phone.startswith(+1):
-        print(phone.replace('+1','254'))
-    elif phone.startswith(7):
-        print(phone.concat('254'+'7'))
-    else:
-        pass
-
-    return render(request, 'all-temps/pay.html')
+def phoneSanitize(phone):
+    if phone.startswith("0"):
+        phone = phone.replace('0','254', 1)
+    elif phone.startswith("+254"):
+        phone = phone.replace('+254','254')
+    elif phone.startswith("+1"):
+        phone = phone.replace('+1','254')
+    elif phone.startswith("7"):
+        phone = phone.replace('7', '2547', 1)
+    print(phone)
+    return phone
+    
+print(phoneSanitize("0112528016"))
+        
