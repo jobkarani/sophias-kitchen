@@ -274,7 +274,7 @@ def cart(request, total=0, quantity=0, cart_items=None):
         for cart_item in cart_items:
             total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
-        sub_total = total 
+            sub_total = total 
     except ObjectDoesNotExist:
         pass #just ignore
 
@@ -401,7 +401,8 @@ def userPayment(request):
     for cart_item in cart_items:
         total += (cart_item.product.price*cart_item.quantity)
         quantity += cart_item.quantity
-    sub_total = total
+        sub_total = total
+    
     if request.method == 'POST':
         mpesa_form = PaymentForm(
             request.POST, request.FILES, instance=request.user)
@@ -412,22 +413,25 @@ def userPayment(request):
                 "Authorization": "Bearer %s" % access_token,
                 "Content-Type": "application/json",
             }
+           
             request = {
                 "BusinessShortCode": LipaNaMpesaPassword().BusinessShortCode,
                 "Password": LipaNaMpesaPassword().decode_password,
                 "Timestamp": LipaNaMpesaPassword().payment_time,
                 "TransactionType": "CustomerPayBillOnline",
                 "Amount": "1",
-                "PartyA": request.POST.get('phone'),
+                "PartyA": phoneSanitize(request.POST.get('phone')),
                 "PartyB": LipaNaMpesaPassword().BusinessShortCode,
-                "PhoneNumber": request.POST.get('phone'),
+                "PhoneNumber": phoneSanitize(request.POST.get('phone')),
                 # "CallBackURL": "https://mpesa-api-python.herokuapp.com/api/v1/mpesa/callback/",
                 "CallBackURL": "https://sandbox.safaricom.co.ke/mpesa/",
-                "AccountReference": "Sophie Stacey 2",
+                "AccountReference": "Sophieskitchen",
                 "TransactionDesc": "Testing stk push",
             }
             response = requests.post(
                 stk_push_api_url, json=request, headers=headers)
+
+            print(response.text)
 
             mpesa_form.save()
             # messages.success(
@@ -435,7 +439,7 @@ def userPayment(request):
             user = User.objects.get(id=current_user.id)
             user.save()
             # time.sleep(10)
-            return redirect('checkout')
+            return redirect('userPayment')
     else:
         mpesa_form = PaymentForm(instance=request.user)
     context = {
@@ -444,3 +448,19 @@ def userPayment(request):
         'sub_total':sub_total,
     }
     return render(request, 'all-temps/pay.html', context)
+
+
+def phoneSanitize(phone):
+    if phone.startswith("0"):
+        phone = phone.replace('0','254', 1)
+    elif phone.startswith("+254"):
+        phone = phone.replace('+254','254')
+    elif phone.startswith("+1"):
+        phone = phone.replace('+1','254')
+    elif phone.startswith("7"):
+        phone = phone.replace('7', '2547', 1)
+    print(phone)
+    return phone
+    
+print(phoneSanitize("0112528016"))
+        
