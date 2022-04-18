@@ -429,13 +429,16 @@ def userPayment(request):
             response = requests.post(
                 stk_push_api_url, json=request, headers=headers)
 
+            response.save()
+            print(response)
+
             mpesa_form.save()
             # messages.success(
             # request, 'Your Payment has been made successfully')
             user = User.objects.get(id=current_user.id)
             user.save()
             # time.sleep(10)
-            return redirect('checkout')
+            return redirect('userPayment')
     else:
         mpesa_form = PaymentForm(instance=request.user)
     context = {
