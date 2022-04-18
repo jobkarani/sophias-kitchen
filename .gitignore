@@ -1,7 +1,7 @@
 virtual/
 venv/
 virtual/
-*.env
+.env
 virtual/
 *.pyc
 ./start.sh
