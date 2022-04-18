@@ -81,16 +81,16 @@
 			<aside class="col-lg-4">
 				<div class="card">
 					<div class="card-body">
-						<dl class="dlist-align">
+						<dl class="list-align">
 							<dt>Total price:</dt>
-							<dd class="text-right">Ksh {{ total }}</dd>
+							<dd class="text-right">Ksh {{ sub_total }}</dd>
 						</dl>
 
-						<hr />
+						<hr/>
 						<p class="text-center mb-3">
 							<img src="" height="26" />
 						</p>
-						<a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Checkout </a>
+						<a href="{% url 'userPayment' %}" class="btn btn-primary btn-block"> Pay </a>
 					</div>
 				</div>
 			</aside>
