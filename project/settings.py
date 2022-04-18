@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'cloudinary',
     'tinymce',
+    'django_daraja',
 ]
 
 MIDDLEWARE = [
