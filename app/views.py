@@ -429,8 +429,8 @@ def userPayment(request):
             response = requests.post(
                 stk_push_api_url, json=request, headers=headers)
 
-            response.save()
-            print(response)
+            # response.save()
+            # print(response)
 
             mpesa_form.save()
             # messages.success(
@@ -445,5 +445,6 @@ def userPayment(request):
         'mpesa_form': mpesa_form,
         'cart_items':cart_items,
         'sub_total':sub_total,
+        # 'response':response,
     }
     return render(request, 'all-temps/pay.html', context)
