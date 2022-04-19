@@ -16,6 +16,7 @@ import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # Email configurations remember to install python-decouple
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
@@ -30,9 +31,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xp28ieoim)30c*rb6lwnm-u%6@^65(y!^592xp20nj36np&83$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -55,8 +53,8 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'bootstrap5',
     'cloudinary',
-    
     'tinymce',
+    'django_daraja',
 ]
 
 MIDDLEWARE = [
@@ -90,19 +88,37 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
+MODE = config("MODE", default="dev")
+SECRET_KEY = config('SECRET_KEY')
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sophia',
-        'USER': 'derrick',
-        'PASSWORD': 'd12345',
-    }
-}
+# development
+if config('MODE') == "dev":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST'),
+            'PORT': '',
+        }
 
+    }
+# production
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=config('DATABASE_URL')
+        )
+    }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+# DATABASES = { 'default': dj_database_url.config() }
+
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 cloudinary.config(
     cloud_name="dwrxuibpi",
     api_key="226928141486514",
