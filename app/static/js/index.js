@@ -72,16 +72,34 @@
 //     document.querySelector('body').style.backgroundColor = '#60b347';
 //   })
 
-$(function() {
-	'use strict';
+// $(function() {
+// 	'use strict';
 	
-  $('.form-control').on('input', function() {
-	  var $field = $(this).closest('.form-group');
-	  if (this.value) {
-	    $field.addClass('field--not-empty');
-	  } else {
-	    $field.removeClass('field--not-empty');
-	  }
-	});
+//   $('.form-control').on('input', function() {
+// 	  var $field = $(this).closest('.form-group');
+// 	  if (this.value) {
+// 	    $field.addClass('field--not-empty');
+// 	  } else {
+// 	    $field.removeClass('field--not-empty');
+// 	  }
+// 	});
 
-});
+// });
+
+
+// //Menu toggle-effect
+// $(document).ready(function(){
+// 	$(".menu-icon").on("click",function(){
+// 	  $("nav ul").toggleClass("showing");
+// 	});
+//   });
+  
+//   //Scrolling Effect
+//   $(window).on('scroll', function(){
+// 	if($(window).scrollTop()) {
+// 	  $('nav').addClass('black');
+// 	}
+// 	else{
+// 	  $('nav').removeClass('black')
+// 	}
+//   })

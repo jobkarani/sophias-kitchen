@@ -35,3 +35,10 @@ h4 span{
   font-weight: 800;
   border-bottom: 3px solid #000;
 }
+.form-text{
+  display: none !important;
+}
+
+.home h3{
+  color: crimson;
+}
