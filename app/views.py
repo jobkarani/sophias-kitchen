@@ -419,7 +419,7 @@ def userPayment(request):
                 "Password": LipaNaMpesaPassword().decode_password,
                 "Timestamp": LipaNaMpesaPassword().payment_time,
                 "TransactionType": "CustomerPayBillOnline",
-                "Amount": "1",
+                "Amount": sub_total,
                 "PartyA": phoneSanitize(request.POST.get('phone')),
                 "PartyB": LipaNaMpesaPassword().BusinessShortCode,
                 "PhoneNumber": phoneSanitize(request.POST.get('phone')),
