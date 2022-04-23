@@ -41,7 +41,7 @@ section .title::after {
 .navbar {
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 200;
   padding: 30px 0;
   font-family: "Ubuntu", sans-serif;
   transition: all 0.3s ease;
@@ -49,7 +49,7 @@ section .title::after {
 
 .navbar.sticky {
   padding: 15px 0;
-  background: #9C0646;
+  background: rgba(225, 225, 225, .7);
  
 }
 .navbar.sticky a{
@@ -135,7 +135,7 @@ section .title::after {
   text-align: center;
   line-height: 45px;
   color: #fff;
-  z-index: 9999;
+  z-index: 500;
   font-size: 30px;
   border-radius: 6px;
   border-bottom-width: 2px;
@@ -155,17 +155,6 @@ section .title::after {
   filter: brightness(90%);
 }
 
-/* home section styling */
-.home {
-  display: flex;
-  background: url("https://i.ibb.co/SPZD6fx/banner.jpg") no-repeat center;
-  height: 100vh;
-  color: #fff;
-  min-height: 500px;
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: "Ubuntu", sans-serif;
-}
 
 
 
@@ -181,7 +170,7 @@ section .title::after {
     <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end " id="navbarNav" style="padding-right: 5px;">
+    <div class="collapse navbar-collapse justify-content-center " id="navbarNav" style="padding-right: 5px;">
       <ul class="navbar-nav">
         <li>
             <a class="nav-link active" style="color: #111; font-size: 22px;" aria-current="page" href="/">Home</a>
@@ -190,36 +179,34 @@ section .title::after {
             <a class="nav-link" style="color: #111; font-size: 22px;" href="/shop/">Shop</a>
         </li>
         <li>
-            <a class="nav-link " aria-current="page" style="color: #111 ; font-size: 22px;" href="/">Pages</a>
-        </li>
-        <li>
             <a class="nav-link" style="color: #111; font-size: 22px;" href="https://www.youtube.com/channel/UCg1H4ynX55XErp-3Z-bDcFA">Videos</a>
         </li>
         {% if user.is_authenticated %}
         <li>
-            <a class="nav-link " aria-current="page" style="color: #111 ;font-size: 22px;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_items.cart_count }}</span></a>
+            <a class="nav-link " aria-current="page" style="color: #111 ;font-size: 30px;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i><span class="badge badge-pill badge-danger notify">{{ cart_items.cart_count }}</span></a>
         </li>
         {% else %}
         <li>
-            <a class="nav-link " aria-current="page" style="color: #111 ;font-size: 22px;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i> </a>
+            <a class="nav-link " aria-current="page" style="font-size: 30px; color: #111;" href="{% url 'cart' %}"><i class="uil uil-shopping-cart"></i> </a>
         </li>
         {% endif %}
-        {% if user.is_authenticated %}    
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" style="color: #111 ;font-size: 22px;">
-            <i class="uil uil-user-circle"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %}?next=/">Logout</a>
-                {% else %}
-                <a class='nav-link in' style="color: #111 ;font-size: 22px;" href="{% url 'login' %}">Login</a> ||
-                <a class='nav-link reg' style="color: #111 ;font-size: 22px;" href="/accounts/register">Register</a>
+        <div class="col-sm-6 col-md-6 end" >
+          {% if user.is_authenticated %}
+      
+          <ul class="navbar-nav nav-right">
+            
+
+              <a class="nav-link" href="{% url 'profile' %} " style="font-size: 30px; color: #111;"><i class="uil uil-user-circle"></i></a>
+              <div class="dropdown-divider"></div>
+              <a class="nav-link" style="color: #111; font-size: 22px;" href="{% url 'logout' %}?next=/">Logout</a>
+              {% else %}
+              <a class='nav-link' style="color: #111;font-size: large;" href="{% url 'login' %}">Login</a> ||
+              <a class='nav-link' style="color: #111;font-size: large;" href="/accounts/register">Register</a>
             </div>
             </li>
-
-            {% endif %}
+          </ul>
+          {% endif %}
+        </div>
       </ul>
     </div>
   </div>
