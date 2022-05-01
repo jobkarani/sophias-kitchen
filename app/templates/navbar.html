@@ -45,6 +45,7 @@ section .title::after {
   padding: 30px 0;
   font-family: "Ubuntu", sans-serif;
   transition: all 0.3s ease;
+  margin-bottom: 1rem;
 }
 
 .navbar.sticky {
@@ -62,7 +63,7 @@ section .title::after {
   justify-content: space-between;
 }
 
-.navbar .logo a {
+/* .navbar .logo a {
   font-size: 35px;
   font-weight: 600;
   background: repeating-linear-gradient(
@@ -81,7 +82,7 @@ section .title::after {
   background-clip: border-box;
   -webkit-background-clip: text;
   animation: slide 8s linear infinite forwards;
-}
+} */
 
 @keyframes slide {
   0% {
@@ -93,12 +94,12 @@ section .title::after {
   }
 }
 
-.navbar.sticky .logo a {
+/* .navbar.sticky .logo a {
   background: white;
   -webkit-text-fill-color: transparent;
   background-clip: border-box;
   -webkit-background-clip: text;
-}
+} */
 
 .navbar .menu li {
   list-style: none;
@@ -154,7 +155,9 @@ section .title::after {
 .scroll-up-btn:hover {
   filter: brightness(90%);
 }
-
+.logo{
+  height: 50px;
+}
 
 
 
@@ -166,7 +169,7 @@ section .title::after {
   </div>  
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
-    <a class="nav-link active" aria-current="page" href="/"><img src="/static/image/sc1logo-removebg-preview.png" alt="" height="50"></a>
+    <a class="nav-link active" aria-current="page" href="/"><img class="logo" src="/static/image/sc1logo-removebg-preview.png" alt="" height="20"></a>
     <button class="navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

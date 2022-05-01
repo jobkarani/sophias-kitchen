@@ -335,6 +335,17 @@ section{
   grid-template-columns: repeat(auto-fit, minmax(240px,auto));
   gap: 1.2rem;
 }
+.deals{
+  background: var(--section-bg-color);
+
+  max-width: 1068px;
+  margin: auto;
+  width: 100%;
+  /* background: url(https://cdn.shopify.com/s/files/1/0013/7487/9814/files/bg-3.jpg?v=1534417152) no-repeat; */
+}
+.profile{
+  padding-top: 5rem;
+}
 
 /*======= Media queries (max-width: 1100px) =======*/
 @media screen and (max-width: 1100px){
