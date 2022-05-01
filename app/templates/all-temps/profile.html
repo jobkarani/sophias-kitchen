@@ -1,19 +1,9 @@
 {% extends "all-temps/base.html" %}
 {% block content %}
-<br><br><br><br>
-<style>
-    .container {
-        margin-left: 35%;
-    }
 
-    section {
-        overflow: hidden;
-        width: 100%;
-    }
-</style>
-<section>
-    <div class=" container">
-        <div class=" mt-5">
+<section class="profile">
+    <div class=" container ">
+        <div class=" ">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card"
@@ -32,7 +22,7 @@
                             </p>
                             <p>
 
-                                {% if profile.phone_number %}
+                                {% if profile.phone %}
                             <p> <span style="font: weight 900px; font-size:larger;"> Phone Number:
                                 </span>{{profile.phone}}</p>
                             {% else %}
