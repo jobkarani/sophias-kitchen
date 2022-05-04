@@ -98,4 +98,28 @@
 	</div>
 </section>
 
+<!-- <script>
+	var amount = { sub_total }
+	var url = {% url 'payments' %}
+
+	createOrder: function(data, actions){
+		return actions.order.create({
+			purchase_units:[{
+				amount:{
+					value:amount,
+				}
+			}]
+		});
+	},
+
+	onApprove: function(data,actions){
+		return actions.order.capture().then(function(details){
+			console.log(details);
+			function sendData(){
+				fetch('https:/google.com')
+			}
+		})
+	}
+</script> -->
+
 {% endblock %}
