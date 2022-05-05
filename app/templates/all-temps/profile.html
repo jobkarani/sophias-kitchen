@@ -1,40 +1,40 @@
 {% extends "all-temps/base.html" %}
 {% block content %}
 
-<section class="profile">
-    <div class=" container ">
-        <div class=" ">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card"
-                        style="filter: drop-shadow(2px 4px 8px #585858);">
-                        {% if profile.profile_photo %}
-                        <img src="{{profile.profile_photo.url}}" alt="" class="card-img-top">
-                        {%else%}
-                        <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
-                            class="card-img-top" alt="My profile picture">
-                        {% endif %}
-                        <div class="card-body text-center">
-                            <h4 class="card-text">
-                                {{ user.first_name }} 
-                            </h4>
-                            <p><span style="font: weight 900px; font-size:larger;">Username: </span> {{ user.username }}
-                            </p>
-                            <p>
-
-                                {% if profile.phone %}
-                            <p> <span style="font: weight 900px; font-size:larger;"> Phone Number:
-                                </span>{{profile.phone}}</p>
-                            {% else %}
-                            <span class="badge rounded-pill bg-info text-white">No contact</span>
-                            {% endif %}
-                            </p>
-                            
-                            <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
-                                    {{ user.date_joined|date }} </span></h6>
-                        </div>
-                    </div>
-                    <br>
+<section class="profile" style="padding-top: 15rem; margin-bottom: 5rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4" >
+                {% if profile.profile_photo %}
+                    <img src="{{profile.profile_photo.url}}" alt="" class="img-top" style="filter: drop-shadow(2px 4px 8px #585858); border-radius: 20px; height: auto; width: 100%; object-fit: cover;">
+                {%else%}
+                    <img src="https://st2.depositphotos.com/1104517/11965/v/600/depositphotos_119659092-stock-illustration-male-avatar-profile-picture-vector.jpg"
+                        class="card-img-top" alt="My profile picture">
+                {% endif %}
+            </div>
+            <div class="col-lg-6 " style="margin-left: 20px; ">
+                <div class="card text-center" style="filter: drop-shadow(2px 4px 8px #585858); padding: 2rem;">
+                    <h4 class="card-text">
+                        {{ user.first_name }} 
+                    </h4>
+                    <p><span style="font: weight 900px; font-size:larger;">Username: </span> {{ user.username }}
+                    </p>
+                    <hr>
+                    <h6>Email Address: <span style="font: weight 900px; font-size:larger;">
+                        {{profile.email}} </span></h6>
+                    <hr>
+                    <p>
+                        {% if profile.phone %}
+                    <p> <span style="font: weight 900px; font-size:larger;"> Phone Number:
+                        </span>{{profile.phone}}</p>
+                    {% else %}
+                    <span class="badge rounded-pill bg-info text-white">No contact</span>
+                    {% endif %}
+                    </p>
+                    <hr>
+                    <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
+                            {{ user.date_joined|date }} </span></h6>
+                    <hr>
                     <div class="deets">
                         <div>
                             <!-- <h3>{{user.username}}</h3> -->
@@ -46,10 +46,12 @@
                                     </a></button>
                             </div>
                             {% endif %}
-
+    
                         </div>
                     </div>
                 </div>
+                <br>
+                
             </div>
         </div>
     </div>
